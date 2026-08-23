@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; media-src 'self' data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="theme-color" content="#080a0c">
   <meta name="description" content="眠っていた写真と動画を、暮らしや仕事の風景へ。DearSceneは大きな作品アーカイブから、忘れていた一枚との再会をつくります。">
   <link rel="icon" href="assets/dearscene-icon.png">
@@ -356,7 +358,7 @@
 <body>
   <header class="topbar glass">
     <div class="brand"><img src="assets/dearscene-icon.png" alt=""><span>DearScene</span></div>
-    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.21-beta.1/DearScene-v1.21.exe">v1.21を入手</a>
+    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.1/DearScene-v1.22.exe">v1.22を入手</a>
   </header>
 
   <section class="opening" aria-labelledby="opening-title">
@@ -558,7 +560,7 @@
               <p>分割数の3倍を先読みし、描画できるページだけへ穏やかなガウス曲線で切り替えます。<sup class="note-ref"><a href="#release-note-3" aria-label="注記3">3</a></sup></p>
               <div class="feature-proof"><span>FRESH PAGE SURFACE</span><span>3× READY BUFFER</span><span>GAUSSIAN MOTION</span></div>
             </div>
-            <div class="feature-visual presentation-layout-demo" aria-label="DearScene v1.21の比率適合メイソンリー、縦短冊、横短冊の表示例">
+            <div class="feature-visual presentation-layout-demo" aria-label="DearScene v1.22の比率適合メイソンリー、縦短冊、横短冊の表示例">
               <img src="assets/presentation-layouts-v116.png" alt="3対4・黄金比・16対9を組み合わせたメイソンリー、貴金属比の縦短冊、1作品を黒枠で横短冊へ分割するパノラマ表示">
             </div>
           </article>
@@ -704,13 +706,13 @@
 
     <section class="beta-release" id="beta" aria-labelledby="beta-title">
       <div class="beta-release-inner" data-reveal>
-        <span class="beta-release-kicker">DEARSCENE v1.21 BETA</span>
+        <span class="beta-release-kicker">DEARSCENE v1.22 BETA</span>
         <h2 id="beta-title"><span class="sentence-block">あなたのアーカイブを、</span><span class="sentence-block">もう一度、生きた景色へ。</span></h2>
-        <p><span class="sentence-block">Windows 10／11向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
+        <p><span class="sentence-block">Windows 10／11 x64向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
         <div class="beta-actions">
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.21-beta.1/DearScene-v1.21.exe">DearScene v1.21をダウンロード</a>
-          <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener">意見・不具合を送る</a>
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.21-beta.1">リリース情報を見る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.1/DearScene-v1.22.exe">DearScene v1.22をダウンロード</a>
+          <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener noreferrer">意見・不具合を送る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.1">リリース情報を見る</a>
         </div>
         <small>ベータ版のため、重要な写真・動画は元の場所に保持したままご利用ください。DearSceneは元ファイルを移動・編集しません。</small>
       </div>
@@ -726,7 +728,8 @@
       <li id="release-note-3">メイソンリーと短冊表示は、1枚表示より高い読み出し・デコード負荷がかかります。低速な外付けストレージや長尺動画を使用する場合は、表示時間を長めに設定してください。準備が間に合わない動画は、読込済み写真へ置き換わる場合があります。</li>
       <li id="release-note-4">スマート構図は、画像内の顔らしさ、ピント、特徴色から端末内で注目位置を推定します。作品の内容や画質によって結果は異なり、人物を識別・特定する機能ではありません。</li>
       <li id="release-note-5">停止監視と迂回再生は、すべてのPC、グラフィックドライバー、外部ストレージ構成で無停止動作を保証するものではありません。再生中に追加されたファイルは、書き込みの安定を確認してから候補へ加わります。</li>
-      <li>DearScene v1.21はWindows 10／11向けベータ版です。掲載している画面、仕様、対応形式は今後の更新で変更される場合があります。</li>
+      <li>DearScene v1.22はWindows 10／11 x64向けベータ版です。本体はネットワーク通信を行わず、元の写真・動画を変更しません。掲載している画面、仕様、対応形式は今後の更新で変更される場合があります。</li>
+      <li>配布用EXEは現在コード署名されていません。GitHub Releasesから入手し、同じリリースのMANIFESTに記載したSHA-256と一致することを確認してから実行してください。</li>
     </ol>
   </aside>
 
@@ -743,7 +746,7 @@
   </footer>
   <script>
     (() => {
-      const revealTargets = document.querySelectorAll('.capability-shell,.use-scene,.window-use,.guide-intro,.audience-grid,.feature-story,.quick-start,.quiet-brand');
+      const revealTargets = document.querySelectorAll('.capability-shell,.use-scene,.window-use,.guide-intro,.audience-grid,.feature-story,.quick-start,.beta-release,.quiet-brand');
       revealTargets.forEach((element) => element.setAttribute('data-reveal', ''));
       if (!('IntersectionObserver' in window)) {
         document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('in-view'));
