@@ -1,0 +1,65 @@
+name: 不具合を報告
+description: DearSceneベータ版の停止、ブラックアウト、表示崩れなどを報告します。
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: DearSceneのバージョン
+      options: ["v1.21", "v1.20", "v1.19以前"]
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: WindowsとPC
+      description: 例：Windows 11 24H2、Core i7、16GB、GeForce GTX 1650
+    validations:
+      required: true
+  - type: dropdown
+    id: storage
+    attributes:
+      label: 写真・動画の保存先
+      options: ["内蔵SSD", "内蔵HDD", "USB SSD", "USB HDD", "NAS／ネットワーク", "その他"]
+    validations:
+      required: true
+  - type: input
+    id: library_size
+    attributes:
+      label: おおよその件数
+      placeholder: 例：写真96万件、動画2万件
+    validations:
+      required: true
+  - type: input
+    id: layout
+    attributes:
+      label: 表示方法と分割数
+      placeholder: 例：メイソンリー7分割、切替3秒
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      description: 起動から問題が起きるまでを順番に記入してください。
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 実際の結果と期待した結果
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 診断表示・スクリーンショット
+      description: 個人的な写真やフォルダー名が含まれる場合は、隠してから添付してください。
+  - type: checkboxes
+    id: live_write
+    attributes:
+      label: 同時アクセス
+      options:
+        - label: 再生中のフォルダーへ別ソフトが書き込んでいた
+        - label: 同じドライブを複数のDearSceneまたは別ソフトが読んでいた

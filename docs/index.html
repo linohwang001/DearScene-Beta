@@ -1,0 +1,764 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080a0c">
+  <meta name="description" content="眠っていた写真と動画を、暮らしや仕事の風景へ。DearSceneは大きな作品アーカイブから、忘れていた一枚との再会をつくります。">
+  <link rel="icon" href="assets/dearscene-icon.png">
+  <title>DearScene — 眠っていた一枚と、また出会う</title>
+  <style>
+    :root { color-scheme: dark; --ink:#080a0c; --glass:rgba(21,25,29,.56); --line:rgba(255,255,255,.22); }
+    * { box-sizing:border-box; }
+    html { width:100%; max-width:100%; scroll-behavior:smooth; background:var(--ink); }
+    body { width:100%; max-width:100%; margin:0; overflow-x:hidden; color:#f7f8f8; background:var(--ink); font-family:"Segoe UI Variable","Segoe UI",sans-serif; }
+    main,section,article,header,footer,div { min-width:0; }
+    img { display:block; width:100%; max-width:100%; height:100%; object-fit:cover; }
+    :where(h1,h2,h3,h4,p,li,.capability-value,.capability-copy,.water-copy b,.principle b,.scene-copy,.guide-title,.feature-copy,.start-step) { line-break:strict; word-break:auto-phrase; overflow-wrap:normal; hyphens:none; }
+    :where(h1,h2,h3,h4,.capability-value,.water-copy b,.principle b,.guide-title) { text-wrap:balance; }
+    :where(p,li,.capability-copy,.feature-copy) { text-wrap:pretty; }
+    .no-split { display:inline-block; white-space:nowrap; }
+    .opening-phrase-line { display:block; }
+    sup.note-ref { margin-left:.16em; font-size:.42em; font-weight:500; line-height:0; vertical-align:super; }
+    sup.note-ref a { color:inherit; text-decoration:none; opacity:.58; }
+    .glass { background:var(--glass); border:1px solid var(--line); box-shadow:inset 0 1px rgba(255,255,255,.12),0 24px 72px rgba(0,0,0,.32); backdrop-filter:blur(26px) saturate(.72); -webkit-backdrop-filter:blur(26px) saturate(.72); }
+    .topbar { position:fixed; z-index:50; top:16px; left:50%; transform:translateX(-50%); width:min(1180px,calc(100% - 28px)); height:62px; border-radius:20px; display:flex; align-items:center; justify-content:space-between; padding:8px 16px 8px 10px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:650; letter-spacing:-.025em; font-size:18px; }
+    .brand img { width:42px; height:42px; border-radius:13px; }
+    .scene-index { display:flex; align-items:center; gap:7px; }
+    .scene-index i { display:block; width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.24); }
+    .scene-index i:first-child { width:24px; border-radius:8px; background:rgba(255,255,255,.76); }
+    .top-cta { min-height:40px; padding:0 17px; display:flex; align-items:center; border-radius:13px; color:#111416; background:#f3f5f6; font-size:12px; font-weight:650; text-decoration:none; transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s; }
+    .top-cta:hover { transform:translateY(-1px); background:white; }
+
+    .opening { min-height:100svh; padding:clamp(112px,15vh,180px) 6vw 9vh; display:grid; place-items:center; position:relative; overflow:hidden; text-align:center; background:#050607; }
+    .opening::before { content:""; position:absolute; width:min(70vw,920px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(107,150,169,.16),rgba(34,51,59,.055) 36%,transparent 68%); filter:blur(22px); transform:translateY(12%); }
+    .opening-inner { width:min(1120px,100%); position:relative; z-index:2; }
+    .opening-mark { width:76px; height:76px; margin:0 auto clamp(32px,5vh,58px); border-radius:24px; box-shadow:0 24px 70px rgba(0,0,0,.56),0 0 55px rgba(127,170,187,.14); }
+    .opening-kicker { display:block; margin-bottom:22px; color:rgba(224,235,239,.5); font-size:11px; letter-spacing:.28em; }
+    .opening h1 { margin:0; padding-bottom:.08em; overflow:visible; font-size:clamp(48px,8.4vw,126px); font-weight:570; line-height:1.08; letter-spacing:-.075em; }
+    .opening h1 > span { display:block; color:transparent; background:linear-gradient(104deg,#f6f8f9 8%,#afc6cf 46%,#f7f8f8 78%); -webkit-background-clip:text; background-clip:text; }
+    .opening-lead { width:min(1080px,94%); margin:clamp(30px,5vh,54px) auto 0; color:rgba(236,241,243,.64); font-size:clamp(15px,1.42vw,20px); line-height:1.75; }
+    .sentence-block { display:block; }
+    .opening-notes { margin-top:36px; display:flex; justify-content:center; flex-wrap:wrap; gap:9px; }
+    .opening-notes span { padding:9px 12px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:rgba(255,255,255,.46); font-size:10px; letter-spacing:.08em; }
+
+    .hero { min-height:100svh; display:grid; place-items:center; padding:0; position:relative; overflow:hidden; background:#090b0d; }
+    .hero::before { content:""; position:absolute; z-index:2; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(2,4,5,.1),transparent 28% 72%,rgba(2,4,5,.52)); }
+    .hero-photo { position:absolute; z-index:1; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; animation:hero-breathe 16s cubic-bezier(.45,0,.25,1) infinite alternate; }
+    .hero-caption { position:absolute; z-index:4; left:clamp(22px,6vw,94px); bottom:clamp(46px,7vw,105px); width:min(510px,46vw); }
+    .hero-caption > span { display:block; margin-bottom:14px; color:rgba(255,255,255,.57); font-size:10px; letter-spacing:.24em; }
+    .hero-caption h2 { margin:0; padding-bottom:.08em; overflow:visible; font-size:clamp(31px,4.5vw,66px); font-weight:550; line-height:1.1; letter-spacing:-.055em; text-shadow:0 4px 30px rgba(0,0,0,.72); }
+    @keyframes hero-breathe { from{transform:scale(1.002)} to{transform:scale(1.045)} }
+    .device-flow { position:relative; z-index:2; width:min(1260px,96vw); display:grid; grid-template-columns:.72fr minmax(70px,.16fr) 1.12fr; align-items:center; gap:clamp(18px,3vw,48px); }
+
+    .laptop-wrap { align-self:end; filter:drop-shadow(0 34px 42px rgba(0,0,0,.52)); }
+    .laptop { width:100%; aspect-ratio:16/11; padding:13px 13px 18px; border-radius:20px 20px 9px 9px; position:relative; background:linear-gradient(145deg,#40464c,#101316 66%); box-shadow:inset 0 1px rgba(255,255,255,.38); }
+    .laptop::before { content:""; position:absolute; left:50%; top:6px; width:5px; height:5px; border-radius:50%; background:#050607; transform:translateX(-50%); box-shadow:0 0 0 1px rgba(255,255,255,.08); }
+    .laptop-screen { height:100%; padding:6px; border-radius:10px; background:#040506; overflow:hidden; display:grid; grid-template-columns:28% 1fr; gap:6px; }
+    .mini-sidebar { border-radius:8px; padding:9px 6px; background:rgba(51,59,65,.62); border:1px solid rgba(255,255,255,.14); display:grid; align-content:start; gap:6px; }
+    .mini-brand { width:25px; height:25px; border-radius:7px; margin:0 auto 5px; }
+    .mini-row { height:11px; border-radius:8px; background:rgba(255,255,255,.1); }
+    .mini-row.active { background:rgba(255,255,255,.32); }
+    .mini-library { min-width:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:5px; }
+    .mini-library img { min-width:0; min-height:0; border-radius:7px; }
+    .laptop-base { width:112%; height:15px; margin-left:-6%; border-radius:2px 2px 20px 20px; background:linear-gradient(180deg,#b7bcc0,#555b60 45%,#202428); box-shadow:inset 0 1px rgba(255,255,255,.65); }
+    .laptop-base::after { content:""; display:block; margin:auto; width:19%; height:4px; border-radius:0 0 5px 5px; background:#777d82; }
+
+    .connection { position:relative; height:160px; display:grid; place-items:center; }
+    .connection::before { content:""; position:absolute; width:155%; height:2px; background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.82),rgba(255,255,255,.1)); }
+    .connection::after { content:""; position:absolute; right:-31%; width:14px; height:14px; border-top:2px solid white; border-right:2px solid white; transform:rotate(45deg); }
+    .signal { position:relative; z-index:2; width:54px; height:54px; border-radius:18px; display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:8px; }
+    .signal img { border-radius:7px; }
+
+    .television-wrap { filter:drop-shadow(0 46px 74px rgba(0,0,0,.65)); }
+    .television { width:100%; aspect-ratio:16/9; padding:clamp(10px,1vw,14px); border-radius:clamp(18px,2vw,30px); position:relative; background:linear-gradient(145deg,#363c41,#050607 72%); box-shadow:inset 0 1px rgba(255,255,255,.33); }
+    .television::before { content:""; position:absolute; z-index:3; left:50%; bottom:4px; width:4px; height:4px; border-radius:50%; background:#9fc5d3; box-shadow:0 0 8px rgba(159,197,211,.7); }
+    .tv-panel { height:100%; position:relative; overflow:hidden; border-radius:clamp(10px,1.3vw,18px); background:#020304; box-shadow:inset 0 0 0 1px rgba(255,255,255,.11); }
+    .tv-stand { width:27%; height:12px; margin:0 auto; border-radius:2px 2px 10px 10px; background:linear-gradient(180deg,#353a3f,#111315); position:relative; }
+    .tv-stand::before { content:""; position:absolute; left:46%; bottom:7px; width:8%; height:32px; background:linear-gradient(90deg,#171a1c,#454a4e,#171a1c); }
+
+    .dear-window { position:absolute; overflow:hidden; border-radius:4px; background:#0a0c0e; border:0; box-shadow:0 12px 30px rgba(0,0,0,.34); }
+    .window-bar { height:22px; display:flex; align-items:center; justify-content:space-between; padding:0 7px; background:linear-gradient(180deg,rgba(72,80,86,.9),rgba(29,34,38,.85)); border-bottom:1px solid rgba(255,255,255,.13); }
+    .window-mark { display:flex; align-items:center; gap:5px; }
+    .window-mark img { width:13px; height:13px; border-radius:4px; }
+    .window-mark i { width:24px; height:3px; border-radius:4px; background:rgba(255,255,255,.28); }
+    .window-dots { display:flex; gap:3px; }.window-dots i { width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.46); }
+    .window-media { width:100%; height:100%; display:grid; gap:0; background:transparent; }
+    .window-media img { min-width:0; min-height:0; }
+    .hero-tv .d1 { left:2%; top:3%; width:57%; height:58%; }.hero-tv .d2 { left:62%; top:3%; width:36%; height:45%; }.hero-tv .d3 { left:2%; top:64%; width:40%; height:33%; }.hero-tv .d4 { left:45%; top:51%; width:53%; height:46%; }
+
+    .scroll-cue { --swipe-distance:-17px; position:absolute; z-index:3; bottom:22px; left:50%; width:28px; height:42px; border:1px solid rgba(255,255,255,.38); border-radius:20px; transform:translateX(-50%); }
+    .scroll-cue::after { content:""; position:absolute; left:11px; bottom:7px; width:4px; height:8px; border-radius:3px; background:white; box-shadow:0 0 10px rgba(255,255,255,.18); animation:swipe-up 1.7s cubic-bezier(.2,.72,.24,1) infinite; }
+    @keyframes swipe-up { 0%{transform:translateY(5px) scaleY(.82);opacity:0}24%{opacity:1}72%{transform:translateY(var(--swipe-distance)) scaleY(1.12);opacity:1}100%{transform:translateY(calc(var(--swipe-distance) - 4px)) scaleY(.86);opacity:0} }
+
+    main { background:radial-gradient(circle at 8% 14%,#1a2024 0,transparent 25%),radial-gradient(circle at 91% 45%,#151b1e 0,transparent 27%),#090b0d; }
+    .water-story { padding:clamp(90px,12vw,180px) 3vw; background:#07090b; overflow:hidden; }
+    .water-head { width:min(1220px,94%); margin:0 auto clamp(52px,8vw,104px); }
+    .water-head > span { display:block; margin-bottom:18px; color:rgba(255,255,255,.35); font-size:11px; letter-spacing:.25em; }
+    .water-head h2 { margin:0; padding-bottom:.08em; overflow:visible; color:rgba(255,255,255,.33); font-size:clamp(45px,7.6vw,108px); font-weight:570; line-height:1.1; letter-spacing:-.068em; }
+    .water-head h2 em { color:#f2f5f6; font-style:normal; }
+    .water-stage { width:min(1360px,100%); min-height:min(78vw,820px); margin:auto; position:relative; overflow:hidden; border-radius:clamp(28px,4vw,56px); background:radial-gradient(circle at 50% 47%,#21313a 0,#0d151a 25%,#030506 72%); box-shadow:inset 0 1px rgba(255,255,255,.12),0 55px 140px rgba(0,0,0,.45); isolation:isolate; }
+    .water-stage::after { content:""; position:absolute; z-index:5; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 48%,transparent 0 18%,rgba(2,4,5,.15) 48%,rgba(2,4,5,.72) 100%); }
+    .memory-frame { position:absolute; z-index:2; overflow:hidden; border-radius:clamp(13px,1.6vw,24px); opacity:.72; box-shadow:0 28px 70px rgba(0,0,0,.48); animation:memory-drift 15s cubic-bezier(.42,0,.28,1) infinite alternate; }
+    .memory-frame img { transition:transform 2.2s cubic-bezier(.22,.72,.24,1); }
+    .memory-frame.f1 { left:5%; top:11%; width:30%; height:43%; animation-delay:-3s; }
+    .memory-frame.f2 { right:6%; top:8%; width:32%; height:38%; animation-delay:-8s; }
+    .memory-frame.f3 { left:12%; bottom:7%; width:33%; height:32%; animation-delay:-11s; }
+    .memory-frame.f4 { right:11%; bottom:7%; width:31%; height:39%; animation-delay:-5s; }
+    @keyframes memory-drift { from{transform:translate3d(0,8px,0) scale(.985);filter:saturate(.84)} to{transform:translate3d(0,-8px,0) scale(1.02);filter:saturate(1.06)} }
+    .drop-core { position:absolute; z-index:8; left:50%; top:47%; width:18px; height:24px; border-radius:55% 45% 55% 45%; background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(154,204,223,.24) 56%,transparent); box-shadow:0 0 28px rgba(193,229,241,.55); transform:translate(-50%,-50%) rotate(45deg); animation:drop-arrive 5.8s cubic-bezier(.2,.7,.2,1) infinite; }
+    .ripple { position:absolute; z-index:7; left:50%; top:48%; width:12px; height:12px; border:1px solid rgba(201,230,241,.72); border-radius:50%; transform:translate(-50%,-50%); animation:ripple-open 5.8s cubic-bezier(.12,.55,.18,1) infinite; }
+    .ripple.r2 { animation-delay:.28s; }.ripple.r3 { animation-delay:.56s; }
+    @keyframes drop-arrive { 0%,13%{opacity:0;transform:translate(-50%,-330%) rotate(45deg) scale(.7)} 26%{opacity:1} 39%{opacity:1;transform:translate(-50%,-50%) rotate(45deg) scale(1)} 42%,100%{opacity:0;transform:translate(-50%,-40%) rotate(45deg) scale(.2)} }
+    @keyframes ripple-open { 0%,39%{opacity:0;transform:translate(-50%,-50%) scale(.2)} 44%{opacity:.8} 77%,100%{opacity:0;transform:translate(-50%,-50%) scale(36)} }
+    .water-copy { position:absolute; z-index:10; left:50%; top:47%; width:min(610px,72%); text-align:center; transform:translate(-50%,-50%); }
+    .water-copy b { display:block; margin-top:132px; color:#f2f6f7; font-size:clamp(24px,3.3vw,49px); font-weight:560; line-height:1.08; letter-spacing:-.045em; text-shadow:0 4px 30px #020405; }
+    .water-copy p { margin:16px auto 0; color:rgba(255,255,255,.61); font-size:clamp(12px,1.15vw,16px); line-height:1.7; }
+    .principles { width:min(1220px,94%); margin:clamp(62px,8vw,110px) auto 0; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.14); }
+    .principle { padding:34px 4vw 8px 0; border-right:1px solid rgba(255,255,255,.11); }
+    .principle + .principle { padding-left:4vw; }.principle:last-child{border-right:0}
+    .principle svg { width:34px; height:34px; margin-bottom:30px; color:#c7d7dd; fill:none; stroke:currentColor; stroke-width:1.4; }
+    .principle b { display:block; margin-bottom:10px; font-size:clamp(18px,2vw,27px); font-weight:550; letter-spacing:-.035em; }
+    .principle p { margin:0; max-width:300px; color:rgba(255,255,255,.47); font-size:12px; line-height:1.7; }
+
+    [data-reveal] { opacity:0; transform:translateY(42px); transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1.15s cubic-bezier(.2,.7,.2,1); }
+    [data-reveal].in-view { opacity:1; transform:none; }
+    .use-scene.in-view .scene-photo { animation:scene-breathe 13s cubic-bezier(.4,0,.25,1) both; }
+    @keyframes scene-breathe { from{transform:scale(1.045)} to{transform:scale(1)} }
+    .panel { min-height:92svh; padding:clamp(76px,9vw,140px) 5vw; display:grid; place-items:center; }
+    .layout-gallery { width:min(1200px,100%); display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,24px); align-items:end; }
+    .layout-example { min-width:0; }
+    .monitor { aspect-ratio:16/10; padding:8px 8px 13px; border-radius:17px 17px 8px 8px; position:relative; background:linear-gradient(145deg,#363c40,#090a0b 72%); box-shadow:0 30px 65px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.25); }
+    .monitor::after { content:""; position:absolute; left:50%; bottom:5px; width:3px; height:3px; border-radius:50%; background:#a5c1cb; }
+    .monitor-screen { width:100%; height:100%; border-radius:9px; overflow:hidden; background:#020304; display:grid; gap:2px; padding:0; }
+    .monitor-screen img { min-width:0; min-height:0; border-radius:0; }
+    .monitor.one .monitor-screen { grid-template-columns:1fr; }.monitor.two .monitor-screen { grid-template-columns:1fr 1fr; }.monitor.four .monitor-screen { grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr; }.monitor.free .monitor-screen { position:relative;display:block; }
+    .monitor.free .monitor-screen img { position:absolute;border:0;box-shadow:0 8px 17px rgba(0,0,0,.34); }.monitor.free img:nth-child(1){left:2%;top:3%;width:60%;height:58%}.monitor.free img:nth-child(2){right:2%;top:3%;width:34%;height:43%}.monitor.free img:nth-child(3){left:2%;bottom:3%;width:37%;height:32%}.monitor.free img:nth-child(4){right:2%;bottom:3%;width:56%;height:46%}
+    .monitor-neck { width:9%; height:24px; margin:auto; background:linear-gradient(90deg,#151719,#555b5f,#151719); }.monitor-foot { width:42%; height:7px; margin:auto; border-radius:10px 10px 3px 3px; background:#24282b; }
+    .layout-number { display:block; margin:18px auto 0; width:max-content; min-width:34px; height:25px; padding:4px 9px; border-radius:10px; color:rgba(255,255,255,.55); text-align:center; font-size:11px; letter-spacing:.06em; }
+
+    .capability-shell { width:min(1280px,100%); max-width:100%; overflow:hidden; padding:clamp(34px,5vw,70px); border-radius:clamp(24px,3vw,42px); background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018)); border:1px solid rgba(255,255,255,.12); box-shadow:0 38px 90px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.08); }
+    .capability-head { display:grid; grid-template-columns:1.15fr .85fr; align-items:end; gap:34px; margin-bottom:clamp(46px,6vw,82px); }
+    .capability-eyebrow { display:block; margin-bottom:14px; color:rgba(255,255,255,.42); font-size:11px; letter-spacing:.2em; }
+    .capability-title { margin:0; padding-bottom:.04em; max-width:760px; color:#f4f6f7; font-size:clamp(30px,4.5vw,64px); font-weight:560; line-height:1.1; letter-spacing:-.055em; white-space:nowrap; }
+    .capability-lead { margin:0 0 5px auto; max-width:430px; color:rgba(255,255,255,.5); font-size:clamp(13px,1.3vw,17px); line-height:1.75; }
+    .capability-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(255,255,255,.16); }
+    .capability-item { min-width:0; padding:clamp(24px,3vw,38px) clamp(18px,2.5vw,34px) 8px; border-right:1px solid rgba(255,255,255,.11); }
+    .capability-item:first-child { padding-left:0; }.capability-item:last-child { border-right:0; padding-right:0; }
+    .line-icon { position:relative; height:94px; margin-bottom:24px; color:rgba(232,239,242,.72); }
+    .capability-code { display:block; margin-bottom:10px; color:rgba(255,255,255,.38); font-size:10px; letter-spacing:.19em; }
+    .capability-value { display:block; margin-bottom:9px; color:#f2f5f6; font-size:clamp(22px,2.2vw,31px); font-weight:540; line-height:1.1; letter-spacing:-.035em; }
+    .capability-value.formats-value { font-size:clamp(20px,1.8vw,27px); white-space:nowrap; }
+    .capability-copy { margin:0; min-height:42px; color:rgba(255,255,255,.5); font-size:13px; line-height:1.6; }
+    .format-list { margin-top:18px; color:rgba(255,255,255,.34); font-size:10px; line-height:1.7; letter-spacing:.055em; }
+    .extension-register { margin-top:38px; padding-top:24px; border-top:1px solid rgba(255,255,255,.11); }
+    .extension-row { display:grid; grid-template-columns:110px 1fr; gap:18px; padding:8px 0; align-items:start; }
+    .extension-row b { color:rgba(255,255,255,.4); font-size:10px; font-weight:550; letter-spacing:.16em; }
+    .extension-row span { min-width:0; overflow-wrap:anywhere; color:rgba(255,255,255,.53); font-size:11px; line-height:1.65; letter-spacing:.035em; }
+
+    .local-promise { padding:0 3vw clamp(90px,11vw,170px); }
+    .local-promise-card { width:min(1280px,100%); min-height:620px; margin:auto; padding:clamp(42px,6vw,88px); display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(38px,7vw,100px); align-items:center; overflow:hidden; position:relative; border-radius:clamp(26px,3.5vw,48px); background:radial-gradient(circle at 78% 50%,rgba(117,162,181,.16),transparent 32%),linear-gradient(145deg,#11171b,#080b0d 65%); border:1px solid rgba(255,255,255,.12); box-shadow:0 42px 110px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.08); }
+    .local-copy { position:relative; z-index:3; }
+    .local-kicker { display:block; margin-bottom:18px; color:rgba(198,219,227,.48); font-size:10px; letter-spacing:.24em; }
+    .local-copy h2 { margin:0; padding-bottom:.08em; overflow:visible; font-size:clamp(34px,4vw,60px); font-weight:555; line-height:1.12; letter-spacing:-.065em; white-space:nowrap; }
+    .local-copy>p { max-width:610px; margin:28px 0 0; color:rgba(255,255,255,.57); font-size:clamp(13px,1.28vw,17px); line-height:1.8; }
+    .trust-row { margin-top:34px; display:flex; flex-wrap:wrap; gap:8px; }
+    .trust-row span { padding:9px 11px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:rgba(255,255,255,.5); font-size:9px; letter-spacing:.06em; }
+    .local-visual { min-height:430px; position:relative; display:grid; place-items:center; }
+    .privacy-orbit { width:min(390px,78vw); aspect-ratio:1; position:relative; display:grid; place-items:center; border:1px solid rgba(195,226,238,.18); border-radius:50%; box-shadow:0 0 100px rgba(111,159,178,.13); }
+    .privacy-orbit::before,.privacy-orbit::after { content:""; position:absolute; border:1px solid rgba(195,226,238,.12); border-radius:50%; }
+    .privacy-orbit::before { inset:13%; }.privacy-orbit::after { inset:27%; }
+    .private-core { width:31%; aspect-ratio:1; position:relative; z-index:2; display:grid; place-items:center; border-radius:30%; background:linear-gradient(145deg,rgba(219,235,241,.2),rgba(58,81,91,.18)); border:1px solid rgba(223,239,245,.36); box-shadow:inset 0 1px rgba(255,255,255,.18),0 24px 70px rgba(0,0,0,.45); }
+    .private-core svg { width:48%; color:#d8e6eb; fill:none; stroke:currentColor; stroke-width:1.4; }
+    .orbit-label { position:absolute; padding:8px 10px; border:1px solid rgba(255,255,255,.12); border-radius:11px; color:rgba(255,255,255,.48); background:rgba(11,15,18,.7); font-size:8px; letter-spacing:.1em; backdrop-filter:blur(12px); }
+    .orbit-label.l1{left:-2%;top:24%}.orbit-label.l2{right:-4%;top:48%}.orbit-label.l3{left:8%;bottom:8%}
+
+    .multi-line span { position:absolute; width:84px; height:53px; border:1px solid currentColor; border-radius:8px; background:#0c0f11; }
+    .multi-line span:nth-child(1){left:3px;top:28px;opacity:.35}.multi-line span:nth-child(2){left:22px;top:15px;opacity:.62}.multi-line span:nth-child(3){left:41px;top:2px;box-shadow:0 0 0 1px rgba(255,255,255,.015)}
+    .multi-line span::after { content:""; position:absolute; left:7px; right:7px; bottom:6px; height:1px; background:rgba(255,255,255,.16); }
+
+    .mix-line { display:flex; align-items:center; gap:12px; }
+    .mix-photo,.mix-video { position:relative; width:82px; height:60px; border:1px solid currentColor; border-radius:8px; overflow:hidden; }
+    .mix-photo::before { content:""; position:absolute; left:10px; bottom:11px; width:60px; height:29px; border-left:1px solid currentColor; border-top:1px solid currentColor; transform:skewY(-26deg) rotate(8deg); opacity:.7; }
+    .mix-photo::after { content:""; position:absolute; right:13px; top:11px; width:8px; height:8px; border:1px solid currentColor; border-radius:50%; }
+    .mix-video::before { content:""; position:absolute; left:34px; top:20px; width:0; height:0; border-top:10px solid transparent; border-bottom:10px solid transparent; border-left:15px solid currentColor; opacity:.82; }
+    .mix-line i { width:20px; height:1px; background:rgba(255,255,255,.26); }
+
+    .files-line { display:flex; align-items:flex-end; gap:8px; }
+    .file-card { position:relative; width:48px; height:66px; padding-top:38px; border:1px solid currentColor; border-radius:5px; color:rgba(232,239,242,.72); text-align:center; font-size:8px; font-style:normal; letter-spacing:.08em; }
+    .file-card::before { content:""; position:absolute; right:-1px; top:-1px; width:14px; height:14px; border-left:1px solid currentColor; border-bottom:1px solid currentColor; background:#0b0e10; clip-path:polygon(0 0,100% 100%,0 100%); }
+    .file-card:nth-child(2){height:76px}.file-card:nth-child(3){height:58px}.file-card:nth-child(4){height:70px}
+
+    .scale-line { display:flex; align-items:center; height:72px; }
+    .scale-line strong { color:rgba(240,245,247,.82); font-size:54px; font-weight:300; line-height:1; letter-spacing:-.08em; }
+    .scale-dots { display:grid; grid-template-columns:repeat(5,5px); gap:8px; margin-left:24px; }
+    .scale-dots i { width:5px; height:5px; border-radius:50%; background:currentColor; }.scale-dots i:nth-child(2n){opacity:.72}.scale-dots i:nth-child(3n){opacity:.43}.scale-dots i:nth-child(5n){opacity:.18}
+
+    .use-scenes { padding:0 3vw 10vw; display:grid; gap:clamp(20px,3vw,40px); }
+    .use-scene { width:100%; aspect-ratio:16/9; min-height:540px; position:relative; overflow:hidden; border-radius:clamp(25px,3vw,44px); box-shadow:0 38px 90px rgba(0,0,0,.4); background:#111; }
+    .use-scene::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.10) 58%,rgba(0,0,0,.08)),linear-gradient(0deg,rgba(0,0,0,.46),transparent 50%); box-shadow:inset 0 0 0 1px rgba(255,255,255,.13); border-radius:inherit; }
+    .scene-photo { position:absolute; inset:0; }
+    .scene-tag { position:absolute; z-index:10; left:clamp(22px,4.5vw,68px); top:clamp(22px,4.5vw,62px); height:40px; padding:0 15px; display:flex; align-items:center; gap:9px; border-radius:14px; color:rgba(255,255,255,.82); font-size:11px; letter-spacing:.13em; }
+    .scene-tag i { width:8px; height:8px; border-radius:50%; background:#d6e1e5; box-shadow:0 0 14px rgba(214,225,229,.6); }
+    .scene-copy { position:absolute; z-index:10; left:clamp(22px,4.5vw,68px); bottom:clamp(24px,5vw,72px); width:min(620px,70%); }
+    .scene-copy h2 { margin:0 0 13px; padding-bottom:.04em; color:#fff; font-size:clamp(29px,4.4vw,64px); font-weight:530; line-height:1.1; letter-spacing:-.055em; }
+    .scene-copy p { margin:0; width:min(540px,100%); color:rgba(255,255,255,.72); font-size:clamp(13px,1.35vw,18px); line-height:1.7; }
+
+    .wall-tv { position:absolute; z-index:5; padding:9px; background:linear-gradient(145deg,#393e42,#070809 75%); box-shadow:0 28px 70px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.26); }
+    .wall-screen { height:100%; position:relative; overflow:hidden; background:#030405; }
+    .living-display { right:7%; top:13%; width:58%; aspect-ratio:16/9; border-radius:18px; transform:perspective(1100px) rotateY(-3deg); }
+    .living-display .wall-screen { display:grid; grid-template-columns:1.12fr .88fr; grid-template-rows:1fr 1fr; gap:5px; padding:5px; border-radius:10px; }.living-display img{min-width:0;min-height:0}.living-display img:first-child{grid-row:1/3}
+
+    .studio-display { left:1.2%; top:8.5%; width:41%; height:78%; border-radius:8px; transform:perspective(1200px) rotateY(2deg); }
+    .studio-display .wall-screen { border-radius:3px; display:grid; grid-template-columns:1.15fr .85fr; grid-template-rows:1fr 1fr; gap:4px; padding:4px; }.studio-display img{min-width:0;min-height:0}.studio-display img:first-child{grid-row:1/3}
+
+    .showroom-display { left:13%; top:17%; width:62%; aspect-ratio:16/8.6; border-radius:15px; box-shadow:0 26px 70px rgba(47,53,57,.3),inset 0 1px rgba(255,255,255,.35); }
+    .showroom-display .wall-screen { border-radius:8px; display:grid; grid-template-columns:1.25fr .75fr; grid-template-rows:1fr 1fr; gap:5px; padding:5px; }.showroom-display img{min-width:0;min-height:0}.showroom-display img:first-child{grid-row:1/3}
+    .showroom-pedestal { position:absolute; z-index:4; right:10%; bottom:10%; width:18%; height:30%; border-radius:6px 6px 0 0; background:linear-gradient(110deg,#f4f4f1,#cfd0cd); box-shadow:0 25px 45px rgba(63,68,71,.22); }
+    .showroom-pedestal::before { content:""; position:absolute; left:22%; top:-12%; width:56%; height:22%; border-radius:50%; background:#c9c7c1; box-shadow:inset -12px -7px rgba(83,88,90,.12); }
+
+    .window-uses { padding:0 3vw 10vw; display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,40px); }
+    .window-use { min-width:0; aspect-ratio:16/10; position:relative; overflow:hidden; border-radius:clamp(25px,3vw,44px); background:#d9d5ce; box-shadow:0 38px 90px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.2); }
+    .window-use::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 40%,rgba(0,0,0,.14)); }
+    .window-room { position:absolute; inset:0; filter:none; }
+    .window-label { position:absolute; z-index:12; top:22px; left:22px; height:38px; min-width:64px; padding:0 14px; display:flex; align-items:center; justify-content:center; border-radius:13px; color:rgba(255,255,255,.82); font-size:10px; letter-spacing:.14em; }
+    .window-tv { position:absolute; z-index:5; left:7%; top:20%; width:86%; aspect-ratio:16/9; padding:11px; border-radius:18px; background:linear-gradient(145deg,#3c4145,#08090a 72%); box-shadow:0 34px 75px rgba(0,0,0,.54),inset 0 1px rgba(255,255,255,.32); }
+    .window-tv::after { content:""; position:absolute; left:50%; bottom:4px; width:4px; height:4px; border-radius:50%; background:#a5c7d2; }
+    .window-tv-screen { width:100%; height:100%; padding:3.5% 7%; display:grid; grid-template-columns:repeat(3,1fr); gap:4.5%; overflow:hidden; border-radius:9px; background:#020304; }
+    .portrait-window { position:relative; overflow:hidden; border:1px solid rgba(255,255,255,.48); border-radius:7px; background-image:url("assets/mountain.jpg"); background-repeat:no-repeat; background-size:300% 100%; box-shadow:0 12px 24px rgba(0,0,0,.42); }
+    .portrait-window:nth-child(1){background-position:0 50%}.portrait-window:nth-child(2){background-position:50% 50%}.portrait-window:nth-child(3){background-position:100% 50%}
+    .portrait-window::before { content:""; position:absolute; inset:0; background:linear-gradient(120deg,rgba(255,255,255,.1),transparent 28% 78%,rgba(255,255,255,.04)); }
+    .portrait-window::after { content:""; position:absolute; top:6px; left:6px; width:10px; height:10px; border-radius:3px; background:url("assets/dearscene-icon.png") center/cover; box-shadow:0 0 0 3px rgba(5,7,8,.38); }
+    .window-tv-neck { position:absolute; z-index:4; left:47%; top:calc(20% + min(43vw,370px)); width:6%; height:46px; background:linear-gradient(90deg,#181a1c,#555a5e,#181a1c); }
+    .window-tv-foot { position:absolute; z-index:4; left:35%; top:calc(20% + min(43vw,410px)); width:30%; height:10px; border-radius:10px; background:#25292c; box-shadow:0 15px 25px rgba(0,0,0,.3); }
+
+    .projection-wall { position:absolute; inset:0; background:linear-gradient(90deg,rgba(255,255,255,.35),transparent 22% 76%,rgba(0,0,0,.08)),url("assets/showroom.jpg") center/cover; filter:saturate(.42) brightness(1.08); }
+    .projector { position:absolute; z-index:9; left:44%; top:8%; width:12%; height:34px; border-radius:8px; background:linear-gradient(145deg,#4e5458,#121416); box-shadow:0 10px 28px rgba(0,0,0,.32); }
+    .projector::before { content:""; position:absolute; right:7px; top:10px; width:14px; height:14px; border-radius:50%; background:radial-gradient(circle,#dff7ff 0 23%,#7fa5b3 32%,#182125 68%); box-shadow:0 0 18px rgba(201,239,255,.8); }
+    .projector::after { content:""; position:absolute; z-index:-1; left:-170%; top:17px; width:440%; height:330px; clip-path:polygon(49% 0,54% 0,100% 100%,0 100%); background:linear-gradient(180deg,rgba(224,245,255,.16),rgba(226,240,245,.035)); filter:blur(4px); }
+    .projection { position:absolute; z-index:5; left:12%; top:24%; width:76%; aspect-ratio:16/9; padding:4% 8%; display:grid; grid-template-columns:repeat(3,1fr); gap:5%; background:rgba(217,234,238,.08); box-shadow:0 0 45px rgba(216,237,245,.16),inset 0 0 24px rgba(255,255,255,.12); }
+    .projection .portrait-window { border-color:rgba(255,255,255,.2); border-radius:2px; box-shadow:0 0 22px rgba(93,127,139,.16); filter:brightness(1.1) contrast(.94); }
+    .projection .portrait-window::after { opacity:.52; }
+
+    .product-guide { padding:clamp(78px,10vw,150px) 3vw; background:linear-gradient(180deg,rgba(255,255,255,.012),transparent 12%),#090b0d; }
+    .guide-inner { width:min(1260px,100%); margin:auto; }
+    .guide-intro { display:grid; grid-template-columns:1fr; gap:clamp(24px,3vw,42px); align-items:start; margin-bottom:54px; }
+    .guide-kicker { display:block; margin-bottom:15px; color:rgba(255,255,255,.38); font-size:10px; letter-spacing:.22em; }
+    .guide-title { margin:0; padding-bottom:.04em; max-width:none; color:#f3f5f6; font-size:clamp(34px,5.15vw,70px); font-weight:540; line-height:1.08; letter-spacing:-.06em; white-space:nowrap; }
+    .guide-intro p { width:min(760px,100%); margin:0; color:rgba(255,255,255,.54); font-size:clamp(14px,1.4vw,18px); line-height:1.8; }
+    .audience-grid { display:grid; grid-template-columns:repeat(4,1fr); margin:0 0 52px; border-top:1px solid rgba(255,255,255,.14); border-bottom:1px solid rgba(255,255,255,.14); }
+    .audience-item { padding:23px 22px; border-right:1px solid rgba(255,255,255,.1); }
+    .audience-item:first-child{padding-left:0}.audience-item:last-child{border-right:0;padding-right:0}
+    .audience-item b { display:block; margin-bottom:7px; color:rgba(255,255,255,.82); font-size:13px; font-weight:560; }
+    .audience-item span { color:rgba(255,255,255,.38); font-size:11px; line-height:1.55; }
+    .feature-index { position:sticky; z-index:20; top:88px; display:flex; gap:7px; margin:0 0 72px; padding:8px; overflow-x:auto; border-radius:17px; scrollbar-width:none; }
+    .feature-index::-webkit-scrollbar{display:none}.feature-index a{flex:0 0 auto;min-height:42px;padding:0 15px;border-radius:11px;display:flex;align-items:center;color:rgba(255,255,255,.58);font-size:11px;text-decoration:none;white-space:nowrap}.feature-index a:hover,.feature-index a:focus-visible{color:white;background:rgba(255,255,255,.1);outline:1px solid rgba(255,255,255,.25)}
+
+    .feature-stack { display:grid; gap:clamp(74px,10vw,150px); }
+    .feature-story { scroll-margin-top:155px; display:grid; grid-template-columns:minmax(280px,.76fr) minmax(0,1.24fr); gap:clamp(30px,6vw,92px); align-items:center; }
+    .feature-story.reverse { grid-template-columns:minmax(0,1.24fr) minmax(280px,.76fr); }.feature-story.reverse .feature-copy{order:2}.feature-story.reverse .feature-visual{order:1}
+    .feature-copy { min-width:0; }
+    .feature-number { display:block; margin-bottom:18px; color:rgba(255,255,255,.3); font-size:10px; letter-spacing:.2em; }
+    .feature-copy h3 { margin:0 0 18px; padding-bottom:.04em; color:#f2f4f5; font-size:clamp(29px,3.65vw,50px); font-weight:540; line-height:1.14; letter-spacing:-.055em; white-space:normal; }
+    .feature-copy > p { margin:0 0 22px; color:rgba(255,255,255,.56); font-size:clamp(14px,1.4vw,17px); line-height:1.82; }
+    .feature-proof { display:flex; flex-wrap:wrap; gap:7px; margin-top:24px; }.feature-proof span{min-height:31px;padding:7px 10px;border:1px solid rgba(255,255,255,.13);border-radius:9px;color:rgba(255,255,255,.42);font-size:9px;letter-spacing:.06em}
+    .feature-visual { min-width:0; overflow:hidden; border-radius:clamp(22px,2.5vw,36px); background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018)); border:1px solid rgba(255,255,255,.13); box-shadow:0 34px 80px rgba(0,0,0,.3),inset 0 1px rgba(255,255,255,.08); }
+
+    .ratio-demo { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:clamp(12px,2vw,20px); }
+    .ratio-card { min-width:0; }.ratio-stage { position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:15px; background:#15191b; }
+    .ratio-stage > img { position:absolute; inset:0; }.ratio-card small{display:block;padding:12px 2px 2px;color:rgba(255,255,255,.42);font-size:9px;letter-spacing:.1em}
+    .blur-stage::before { content:""; position:absolute; inset:-14%; background:url("assets/baby.jpg") center/cover; filter:blur(24px) saturate(.84) brightness(.9); transform:scale(1.16); }
+    .blur-stage::after { content:""; position:absolute; inset:0; background:rgba(7,9,10,.08); }.blur-stage > img{z-index:2;object-fit:contain}
+    .ratio-tracking{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:15px;background:linear-gradient(145deg,#171b1e,#0d0f11)}.adaptive-window{position:absolute;overflow:hidden;border:1px solid rgba(255,255,255,.34);border-radius:9px;background:#090b0c;box-shadow:0 14px 30px rgba(0,0,0,.35)}.adaptive-window img{position:absolute;inset:0;object-fit:cover}.adaptive-window::after{content:"";position:absolute;width:20px;height:20px;border:1px solid rgba(255,255,255,.8);border-radius:50%;box-shadow:0 0 0 7px rgba(255,255,255,.07)}.adaptive-window.wide{left:5%;top:7%;width:62%;height:35%}.adaptive-window.wide img{object-position:49% 39%}.adaptive-window.wide::after{left:48%;top:32%}.adaptive-window.square{left:8%;bottom:7%;width:34%;aspect-ratio:1}.adaptive-window.square img{object-position:45% 42%}.adaptive-window.square::after{left:44%;top:34%}.adaptive-window.tall{right:7%;bottom:7%;width:27%;height:78%}.adaptive-window.tall img{object-position:46% 38%}.adaptive-window.tall::after{left:43%;top:29%}.tracking-line{position:absolute;left:39%;top:56%;width:28%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.62));transform:rotate(-24deg)}
+
+    .focus-demo { position:relative; aspect-ratio:16/10; background:#111; }.focus-demo > img{position:absolute;inset:0;object-fit:cover;object-position:46% 38%;filter:brightness(.82)}
+    .focus-path { position:absolute; left:12%; top:66%; width:47%; height:1px; background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(255,255,255,.78)); transform:rotate(-19deg); transform-origin:left; }.focus-path::after{content:"";position:absolute;right:-5px;top:-5px;width:10px;height:10px;border:1px solid white;border-radius:50%;box-shadow:0 0 0 9px rgba(255,255,255,.08),0 0 26px rgba(255,255,255,.28)}
+    .focus-rank { position:absolute; right:20px; bottom:20px; width:min(260px,42%); padding:16px; border-radius:16px; }.focus-rank span{display:flex;align-items:center;gap:9px;padding:6px 0;color:rgba(255,255,255,.54);font-size:10px}.focus-rank span:first-child{color:white}.focus-rank i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);font-style:normal;font-size:8px}
+    .motion-track { position:absolute; left:8%; right:8%; bottom:8%; height:4px; border-radius:6px; background:rgba(255,255,255,.13); }.motion-track::before{content:"";position:absolute;left:0;top:0;width:86%;height:100%;border-radius:inherit;background:rgba(255,255,255,.62)}.motion-track::after{content:"1 SEC";position:absolute;right:0;top:-18px;color:rgba(255,255,255,.62);font-size:8px;letter-spacing:.12em}
+
+    .look-demo { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:10px; }.look-card{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px}.look-card img{position:absolute;inset:0}.look-card span{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;color:white;background:rgba(8,10,12,.55);font-size:8px;letter-spacing:.08em;backdrop-filter:blur(10px)}.look-portra img{filter:sepia(.22) saturate(.72) contrast(.92) brightness(1.07)}.look-cine img{filter:hue-rotate(168deg) saturate(1.08) contrast(1.04) brightness(.92)}.look-hp5 img{filter:grayscale(1) contrast(1.14)}
+
+    .timing-demo { padding:clamp(22px,3vw,38px); }.timing-line{position:relative;height:90px;margin:18px 0 30px}.timing-line::before{content:"";position:absolute;left:0;right:0;top:42px;height:2px;background:rgba(255,255,255,.12)}.timing-progress{position:absolute;left:0;top:42px;width:93%;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.25),rgba(255,255,255,.78))}.timing-node{position:absolute;top:33px;width:20px;height:20px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:#111518}.timing-node:nth-child(2){left:0}.timing-node:nth-child(3){left:46%}.timing-node:nth-child(4){right:5%}.timing-node:nth-child(5){right:0;background:white}.timing-caption{position:absolute;top:63px;color:rgba(255,255,255,.4);font-size:9px}.timing-caption.start{left:0}.timing-caption.subject{left:42%}.timing-caption.hold{right:0;text-align:right}.transition-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.transition-card{position:relative;aspect-ratio:1.35;overflow:hidden;border-radius:12px;background:#1b2023}.transition-card img{position:absolute;inset:0}.transition-card img:last-of-type{clip-path:polygon(55% 0,100% 0,100% 100%,36% 100%);opacity:.72}.transition-card small{position:absolute;left:8px;bottom:7px;color:rgba(255,255,255,.7);font-size:7px;letter-spacing:.06em}
+
+    .rediscovery-demo { padding:clamp(22px,3vw,38px); }.mode-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mode-card{min-height:150px;padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.025)}.mode-icon{height:48px;display:flex;align-items:center;gap:5px;margin-bottom:17px}.mode-icon i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}.mode-card:nth-child(1) .mode-icon i:nth-child(2),.mode-card:nth-child(2) .mode-icon i:nth-child(4),.mode-card:nth-child(3) .mode-icon i:nth-child(1){width:16px;border-radius:8px;background:rgba(255,255,255,.82)}.mode-card b{display:block;margin-bottom:7px;color:rgba(255,255,255,.82);font-size:12px}.mode-card p{margin:0;color:rgba(255,255,255,.38);font-size:10px;line-height:1.55}.memory-actions{display:flex;gap:8px;margin-top:12px}.memory-actions span{min-height:34px;padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);font-size:9px}
+
+    .media-demo { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px; }.media-pane{position:relative;min-height:330px;overflow:hidden;border-radius:16px}.media-pane img{position:absolute;inset:0}.media-pane.video::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid rgba(255,255,255,.86);transform:translate(-35%,-50%);filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}.media-badges{position:absolute;z-index:3;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:5px}.media-badges span{padding:6px 8px;border-radius:8px;background:rgba(7,9,10,.62);backdrop-filter:blur(9px);color:rgba(255,255,255,.72);font-size:8px;letter-spacing:.05em}
+
+    .reliability-demo { padding:clamp(24px,4vw,44px); }.pipeline{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:center}.pipe-box{min-height:120px;padding:17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.025)}.pipe-box b{display:block;margin-bottom:12px;color:rgba(255,255,255,.74);font-size:10px;letter-spacing:.1em}.pipe-box span{display:block;padding:5px 0;color:rgba(255,255,255,.38);font-size:9px}.pipe-box .ready{color:rgba(255,255,255,.78)}.pipe-box .skip{text-decoration:line-through;opacity:.45}.pipe-arrow{height:1px;background:rgba(255,255,255,.22);position:relative}.pipe-arrow::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid rgba(255,255,255,.4);border-right:1px solid rgba(255,255,255,.4);transform:rotate(45deg)}.reliability-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.reliability-foot span{min-height:45px;padding:12px;border-radius:12px;background:rgba(255,255,255,.045);color:rgba(255,255,255,.46);font-size:9px;line-height:1.45}
+
+    .ui-demo { display:grid; grid-template-columns:1.35fr .65fr; gap:10px; padding:10px; }.ui-main,.ui-side{display:grid;gap:10px}.ui-shot{position:relative;overflow:hidden;border-radius:15px;background:#111}.ui-shot img{height:auto;aspect-ratio:auto;object-fit:contain}.ui-shot small{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;background:rgba(7,9,10,.56);color:rgba(255,255,255,.68);font-size:8px;backdrop-filter:blur(10px)}
+    .presentation-layout-demo { padding:10px; background:#080a0c; }.presentation-layout-demo img{height:auto;object-fit:contain;border-radius:14px}
+
+    .quick-start { margin-top:clamp(90px,12vw,170px); padding:clamp(32px,5vw,70px); border-radius:clamp(24px,3vw,42px); background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.018)); border:1px solid rgba(255,255,255,.13); }.quick-start-head{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:end;margin-bottom:40px}.quick-start h3{margin:0;padding-bottom:.04em;color:#f2f4f5;font-size:clamp(34px,5vw,66px);font-weight:540;line-height:1.12;letter-spacing:-.055em;white-space:nowrap}.quick-start-head p{margin:0;color:rgba(255,255,255,.46);font-size:14px;line-height:1.7}.start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.start-step{min-height:185px;padding:22px;border:1px solid rgba(255,255,255,.1);border-radius:17px;background:rgba(255,255,255,.022)}.start-step i{display:grid;place-items:center;width:33px;height:33px;margin-bottom:35px;border:1px solid rgba(255,255,255,.22);border-radius:50%;color:rgba(255,255,255,.54);font-style:normal;font-size:10px}.start-step b{display:block;margin-bottom:9px;color:rgba(255,255,255,.82);font-size:17px;font-weight:540}.start-step p{margin:0;color:rgba(255,255,255,.4);font-size:11px;line-height:1.6}.picker-features{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.picker-features span{padding:8px 10px;border:1px solid rgba(255,255,255,.12);border-radius:9px;color:rgba(255,255,255,.48);font-size:9px}.picker-shot{margin-top:8px;border-radius:18px;overflow:hidden;background:#111}
+    .public-picker { aspect-ratio:1080/700; padding:2.2%; display:grid; grid-template-rows:auto auto 1fr auto; gap:2.1%; color:rgba(255,255,255,.84); background:linear-gradient(145deg,#20262b,#111519 72%); border:1px solid rgba(255,255,255,.36); border-radius:inherit; box-shadow:inset 0 1px rgba(255,255,255,.11); font-size:clamp(6px,1vw,13px); }
+    .public-toolbar { display:flex; align-items:center; gap:1.3%; }.public-tool { width:5%; aspect-ratio:1; display:grid; place-items:center; border:1px solid rgba(255,255,255,.17); border-radius:36%; color:rgba(255,255,255,.76); background:rgba(255,255,255,.06); font-size:1.9em; line-height:1; }.public-tool.primary { color:#14181b; background:#f1f3f4; }.public-tool.close{margin-left:auto;font-size:2.2em}
+    .public-address { padding:1.5% 1.8%; border:1px solid rgba(255,255,255,.14); border-radius:11px; color:rgba(255,255,255,.7); background:rgba(255,255,255,.08); }
+    .public-picker-body { min-height:0; display:grid; grid-template-columns:22% 1fr 22%; gap:2.5%; }.public-tree,.public-selected { min-height:0; padding:8%; overflow:hidden; border:1px solid rgba(255,255,255,.12); border-radius:13px; background:rgba(255,255,255,.045); }
+    .tree-row { padding:.45em .3em; display:flex; align-items:center; gap:.65em; color:rgba(255,255,255,.56); white-space:nowrap; }.tree-row::before { content:""; width:1.2em; height:.8em; border:1px solid currentColor; border-radius:.15em; }.tree-row.root{color:rgba(255,255,255,.82)}.tree-row.child{padding-left:1.7em}.tree-row.active{margin-top:.35em;color:#fff;background:rgba(255,255,255,.1);border-radius:7px}
+    .public-media { min-width:0; min-height:0; display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:1fr; gap:2.3%; overflow:hidden; }.public-media-card { min-width:0; min-height:0; padding:3%; display:grid; grid-template-rows:1fr auto; gap:5%; border:1px solid rgba(255,255,255,.12); border-radius:11px; background:rgba(255,255,255,.04); }.public-media-card img { min-height:0; border-radius:7px; }.public-media-card span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,.62)}
+    .public-selected b{display:block;margin-bottom:10%;font-size:.95em;line-height:1.5}.selected-pill{padding:8% 7%;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.13);border-radius:10px;background:rgba(255,255,255,.08)}
+    .public-picker-actions { display:grid; grid-template-columns:22% 1fr 22%; gap:2.5%; align-items:center; }.public-action { min-height:3.4em; display:grid; place-items:center; border:1px solid rgba(255,255,255,.15); border-radius:10px; background:rgba(255,255,255,.06); }.public-action.apply{grid-column:3;color:#15191c;background:#f2f4f5;font-weight:650}
+
+    .quiet-brand { min-height:55svh; display:grid; place-items:center; background:radial-gradient(circle,rgba(93,121,133,.14),transparent 38%); }
+    .quiet-brand div { text-align:center; }.quiet-brand img{width:clamp(92px,12vw,154px);height:auto;margin:auto;border-radius:30%;box-shadow:0 34px 84px rgba(0,0,0,.5)}.quiet-brand b{display:block;margin-top:25px;font-size:clamp(32px,5vw,66px);letter-spacing:-.055em}
+    .credits { min-height:90px; padding:20px; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:4px 10px; color:rgba(255,255,255,.38); font-size:10px; }
+    .credits a { color:inherit; text-decoration:none; }.credits a:hover{color:white}
+    .release-disclosures { padding:clamp(54px,8vw,100px) max(24px,6vw) 24px; background:#080a0c; color:rgba(255,255,255,.34); }
+    .release-disclosures ol { width:min(1120px,100%); margin:0 auto; padding-left:1.55em; }
+    .release-disclosures li { margin:0 0 9px; padding-left:.3em; font-size:10px; line-height:1.65; letter-spacing:.01em; }
+    .release-disclosures a { color:inherit; }
+    .beta-release { padding:clamp(70px,10vw,150px) max(20px,6vw); background:linear-gradient(180deg,#0c1013,#080a0c); }
+    .beta-release-inner { width:min(920px,100%); margin:auto; padding:clamp(28px,6vw,68px); border:1px solid rgba(255,255,255,.12); border-radius:clamp(24px,4vw,42px); background:radial-gradient(circle at 50% 0,rgba(119,164,183,.16),transparent 55%),rgba(255,255,255,.025); text-align:center; }
+    .beta-release-kicker { display:block; margin-bottom:18px; color:rgba(255,255,255,.46); font-size:10px; letter-spacing:.18em; }
+    .beta-release h2 { font-size:clamp(34px,6vw,72px); line-height:1.02; letter-spacing:-.055em; }
+    .beta-release p { width:min(650px,100%); margin:22px auto 0; color:rgba(255,255,255,.56); font-size:clamp(13px,1.5vw,17px); line-height:1.8; }
+    .beta-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:30px; }
+    .beta-actions a { min-height:48px; padding:0 21px; display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.18); border-radius:15px; color:white; background:rgba(255,255,255,.06); font-size:12px; font-weight:650; text-decoration:none; transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s; }
+    .beta-actions a:first-child { color:#101416; background:#f4f6f7; }
+    .beta-actions a:hover { transform:translateY(-2px); background:white; color:#101416; }
+    .beta-release small { display:block; margin-top:18px; color:rgba(255,255,255,.3); font-size:9px; line-height:1.65; }
+
+    @media (max-width:900px){
+      .topbar{top:10px;height:58px}.brand{font-size:16px}.brand img{width:38px;height:38px}
+      .hero{padding:0}.hero-photo{object-position:center}.device-flow{grid-template-columns:1fr;gap:25px;max-width:720px}.laptop-wrap{width:55%;justify-self:start}.connection{height:38px;width:58%;justify-self:center;transform:rotate(90deg)}.signal{transform:rotate(-90deg)}.television-wrap{width:100%}
+      .layout-gallery{grid-template-columns:1fr 1fr;gap:42px 16px;max-width:720px}
+      .capability-head{grid-template-columns:1fr}.capability-lead{margin-left:0}.capability-grid{grid-template-columns:1fr 1fr}.capability-item{border-bottom:1px solid rgba(255,255,255,.1)}.capability-item:nth-child(2){border-right:0}.capability-item:nth-child(3){padding-left:0}.capability-item:nth-child(3),.capability-item:nth-child(4){border-bottom:0}
+      .local-promise-card{grid-template-columns:1fr;min-height:auto}.local-visual{min-height:360px}
+      .use-scene{min-height:520px}.living-display{width:75%;right:4%;top:18%}.studio-display{width:50%;height:69%;top:15%}.showroom-display{width:78%;left:5%;top:24%}
+      .window-uses{grid-template-columns:1fr}.window-use{min-height:520px}
+      .guide-intro{grid-template-columns:1fr;align-items:start}.audience-grid{grid-template-columns:1fr 1fr}.audience-item:nth-child(2){border-right:0}.audience-item:nth-child(3){padding-left:0}.feature-story,.feature-story.reverse{grid-template-columns:1fr}.feature-story.reverse .feature-copy{order:1}.feature-story.reverse .feature-visual{order:2}.quick-start-head{grid-template-columns:1fr}
+      .principles{grid-template-columns:1fr}.principle,.principle + .principle{padding:27px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.11)}.principle:last-child{border-bottom:0}
+    }
+    @media (max-width:560px){
+      .topbar{top:8px;left:8px;right:8px;width:auto;height:54px;padding:7px 12px 7px 8px;transform:none;border-radius:17px}.brand{gap:9px;font-size:15px}.brand img{width:36px;height:36px;border-radius:11px}.scene-index{gap:5px}.scene-index i{width:6px;height:6px}.scene-index i:first-child{width:18px}
+      .opening{min-height:92svh;padding:104px 15px 70px}.opening-mark{width:62px;height:62px;border-radius:19px;margin-bottom:35px}.opening h1{font-size:clamp(34px,9.6vw,48px);line-height:1.02}.opening-lead{width:94%;font-size:14px}.opening-notes{margin-top:26px}.opening-notes span{font-size:8px}.top-cta{min-height:36px;padding-inline:13px;font-size:10px}
+      .hero{min-height:auto;aspect-ratio:auto;margin:0;padding:10px 10px 44px;display:flex;align-items:center}.hero::before{inset:0 10px 34px;border-radius:19px;background:linear-gradient(180deg,rgba(2,4,5,.05),transparent 58%,rgba(2,4,5,.46))}.hero-photo{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:19px}.hero-caption{left:26px;bottom:66px;width:70%}.hero-caption>span{margin-bottom:7px;font-size:7px}.hero-caption h2{font-size:25px}.scroll-cue{display:none}
+      .water-story{padding:76px 10px}.water-head{width:100%;margin-bottom:40px;padding-inline:8px}.water-head h2{font-size:clamp(42px,13vw,64px)}.water-stage{min-height:132vw;border-radius:24px}.memory-frame.f1{left:5%;top:7%;width:46%;height:31%}.memory-frame.f2{right:5%;top:13%;width:38%;height:25%}.memory-frame.f3{left:6%;bottom:7%;width:40%;height:29%}.memory-frame.f4{right:5%;bottom:5%;width:45%;height:35%}.ripple{top:49%}.drop-core{top:48%}.water-copy{top:48%;width:82%}.water-copy b{margin-top:100px;font-size:27px}.water-copy p{font-size:11px}.principles{width:calc(100% - 18px);margin-top:58px}
+      .laptop-wrap{width:72%}.connection{width:72%}.layout-gallery{grid-template-columns:1fr;max-width:380px}.panel{min-height:auto;padding:58px 10px}.capability-title{font-size:clamp(24px,6.3vw,35px);line-height:1.08}.capability-lead{font-size:13px;line-height:1.7}.capability-eyebrow{font-size:9px;letter-spacing:.16em}
+      .capability-shell{padding:30px 20px;border-radius:24px}.capability-head{gap:22px;margin-bottom:32px}.capability-grid{grid-template-columns:1fr}.capability-item,.capability-item:first-child,.capability-item:nth-child(3),.capability-item:last-child{padding:26px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.capability-item:last-child{border-bottom:0}.line-icon{height:76px;margin-bottom:15px}.capability-value{font-size:25px}.capability-copy{min-height:0;font-size:12px}.format-list{font-size:9px}
+      .local-promise{padding:0 10px 76px}.local-promise-card{padding:34px 20px;border-radius:24px;gap:24px}.local-copy h2{font-size:clamp(30px,8.5vw,40px)}.local-copy>p{font-size:12px;line-height:1.75}.trust-row{margin-top:24px}.local-visual{min-height:300px}.privacy-orbit{width:min(290px,82vw)}
+      .extension-register{margin-top:22px;padding-top:18px}.extension-row{grid-template-columns:1fr;gap:5px;padding:9px 0}.extension-row span{font-size:9.5px;line-height:1.75;letter-spacing:.02em}
+      .use-scenes{padding:0 10px 58px;gap:14px}.use-scene{aspect-ratio:4/5;min-height:0;border-radius:20px}.scene-photo{object-fit:cover}.scene-tag{left:14px;top:14px;height:32px;padding:0 11px;border-radius:11px;font-size:9px}.scene-tag i{width:6px;height:6px}.scene-copy{left:17px;right:17px;bottom:20px;width:auto}.scene-copy h2{margin-bottom:9px;font-size:clamp(27px,8vw,38px)}.scene-copy p{font-size:12px;line-height:1.6}
+      .window-uses{padding:0 10px 58px;gap:14px}.window-use{aspect-ratio:16/9;min-height:0;border-radius:20px}.window-label{top:10px;left:10px;height:32px;min-width:54px;padding:0 10px;border-radius:11px;font-size:8px}.quiet-brand{min-height:42svh}.quiet-brand img{width:88px}.quiet-brand b{margin-top:18px;font-size:38px}.credits{padding:22px 16px;justify-content:flex-start;font-size:9px}.release-disclosures{padding:48px 22px 18px}.release-disclosures li{font-size:10px;line-height:1.72}
+      .product-guide{padding:72px 10px}.guide-intro{gap:22px;margin-bottom:36px}.guide-title{font-size:clamp(24px,7vw,36px);line-height:1.12}.guide-intro p{font-size:13px;line-height:1.72}.audience-grid{grid-template-columns:1fr;margin-bottom:34px}.audience-item,.audience-item:first-child,.audience-item:nth-child(3),.audience-item:last-child{padding:17px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.audience-item:last-child{border-bottom:0}.audience-item b{margin-bottom:4px}.feature-index{top:70px;margin-bottom:58px;padding:7px;border-radius:15px}.feature-index a{min-height:40px;padding:0 12px}.feature-stack{gap:82px}.feature-story{scroll-margin-top:132px;gap:26px}.feature-copy h3{font-size:clamp(26px,7.3vw,36px)}.feature-copy>p{font-size:13px;line-height:1.75}.feature-proof{margin-top:18px}.feature-visual{border-radius:21px}
+      .ratio-demo{grid-template-columns:1fr;gap:12px;padding:8px}.ratio-stage,.ratio-tracking{border-radius:11px}.ratio-card small{padding:9px 1px 2px;font-size:7px;letter-spacing:.04em}.focus-demo{aspect-ratio:4/5}.focus-rank{right:12px;bottom:42px;width:calc(100% - 24px);padding:12px}.focus-rank span{padding:4px 0}.motion-track{bottom:5%}.look-demo{gap:6px;padding:7px}.look-card{border-radius:10px}.timing-demo{padding:18px 14px}.timing-line{margin-top:4px}.transition-row{grid-template-columns:1fr 1fr;gap:6px}.rediscovery-demo{padding:14px}.mode-row{grid-template-columns:1fr;gap:7px}.mode-card{min-height:auto;padding:14px}.mode-icon{height:28px;margin-bottom:10px}.memory-actions{flex-wrap:wrap}.media-demo{grid-template-columns:1fr;padding:7px;gap:7px}.media-pane{min-height:250px}.reliability-demo{padding:18px}.pipeline{grid-template-columns:1fr}.pipe-box{min-height:auto}.pipe-arrow{width:1px;height:24px;margin:auto}.pipe-arrow::after{right:-3px;top:auto;bottom:0;transform:rotate(135deg)}.reliability-foot{grid-template-columns:1fr}.ui-demo{grid-template-columns:1fr;padding:7px}.ui-side{grid-template-columns:1fr 1fr}.quick-start{margin-top:88px;padding:28px 14px;border-radius:22px}.quick-start-head{gap:18px;margin-bottom:26px}.quick-start h3{font-size:clamp(27px,8vw,36px)}.quick-start-head p{font-size:12px}.start-grid{grid-template-columns:1fr;gap:7px}.start-step{min-height:auto;padding:17px}.start-step i{margin-bottom:18px}.picker-shot{border-radius:13px}.public-picker{aspect-ratio:4/5;font-size:8px}.public-tool{width:10%}.public-address{border-radius:6px}.public-picker-body{grid-template-columns:1fr}.public-tree,.public-selected{display:none}.public-media{grid-template-columns:repeat(2,1fr)}.public-media-card{border-radius:6px}.public-picker-actions{grid-template-columns:1fr 1fr;font-size:8px}.public-action.apply{grid-column:2}
+    }
+    @media (max-width:360px){
+      .scene-index{display:none}.capability-shell{padding-inline:17px}.file-card{width:44px}.files-line{gap:6px}.capability-title{font-size:22px}.product-guide{padding-inline:8px}.guide-title{font-size:24px}.ratio-card small{font-size:6.5px}.feature-copy h3{font-size:26px}.ui-side{grid-template-columns:1fr}
+    }
+    @media (max-height:520px) and (orientation:landscape){
+      .topbar{height:50px}.hero{min-height:100svh;padding:64px 10px 30px}.hero-photo{height:calc(100svh - 94px);width:auto;max-width:100%;aspect-ratio:16/9;object-fit:contain}.scroll-cue{display:none}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-cue::after,.hero-photo,.drop-core,.ripple,.memory-frame,.use-scene.in-view .scene-photo{animation:none}.drop-core,.ripple{display:none}[data-reveal]{opacity:1;transform:none;transition:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar glass">
+    <div class="brand"><img src="assets/dearscene-icon.png" alt=""><span>DearScene</span></div>
+    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.21-beta.1/DearScene-v1.21.exe">v1.21を入手</a>
+  </header>
+
+  <section class="opening" aria-labelledby="opening-title">
+    <div class="opening-inner" data-reveal>
+      <img class="opening-mark" src="assets/dearscene-icon.png" alt="">
+      <span class="opening-kicker">YOUR ARCHIVE, ALIVE</span>
+      <h1 id="opening-title"><span class="opening-phrase-line no-split">しまっていた写真を、</span><span class="no-split">景色に。</span></h1>
+      <p class="opening-lead"><span class="sentence-block">DearSceneは、フォルダーに眠る写真と動画を選び、整え、静かにめぐらせる。</span><span class="sentence-block">検索しなくても、忘れていた一枚とまた出会えます。</span></p>
+      <div class="opening-notes" aria-label="DearSceneの特徴"><span>LOCAL FIRST</span><span>PHOTO + VIDEO</span><span>SMART COMPOSITION</span></div>
+    </div>
+  </section>
+
+  <section class="hero" aria-label="PCで複数のDearSceneを起動し、大画面テレビ内に自由配置">
+    <img class="hero-photo" src="assets/hero-pc-tv-v2.png" alt="DearSceneを設定するPCと、枠や帯を表示せず複数の写真・動画を自由配置した大画面TV">
+    <div class="hero-caption" data-reveal><span>ONE FOLDER. ENDLESS SCENES.</span><h2><span class="sentence-block">選ぶのは場所。</span><span class="sentence-block">あとは、景色が動き出す。</span></h2></div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+
+  <main>
+    <section class="water-story" aria-label="DearSceneの体験">
+      <header class="water-head" data-reveal><span>THE DEARSCENE EXPERIENCE</span><h2><span class="no-split">偶然の一枚が、</span><br><em class="no-split">記憶をひらく。</em></h2></header>
+      <div class="water-stage" data-reveal>
+        <div class="memory-frame f1"><img src="assets/baby.jpg" alt="家族の記憶"></div>
+        <div class="memory-frame f2"><img src="assets/mountain.jpg" alt="旅先の風景"></div>
+        <div class="memory-frame f3"><img src="assets/study-works.jpg" alt="制作アーカイブ"></div>
+        <div class="memory-frame f4"><img src="assets/architecture-presentation.jpg" alt="仕事の実績"></div>
+        <i class="drop-core" aria-hidden="true"></i><i class="ripple r1" aria-hidden="true"></i><i class="ripple r2" aria-hidden="true"></i><i class="ripple r3" aria-hidden="true"></i>
+        <div class="water-copy"><b>整理はいらない。<br>再会するだけ。</b><p><span class="sentence-block">写真も動画も、元ファイルには触れない。</span><span class="sentence-block">DearSceneが変えるのは、鑑賞の流れだけです。</span></p></div>
+      </div>
+      <div class="principles" data-reveal>
+        <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9.5h8l2.2 2.5H28v14H4z"/><path d="M4 12V7h8l2 2.5"/></svg><b>選択は、一度でいい。</b><p><span class="sentence-block">一枚ずつ探す必要はありません。</span><span class="sentence-block">サブフォルダーまで含め、アーカイブのすべてを解き放ちます。</span></p></article>
+        <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4"/></svg><b>主役は、見失わない。</b><p><span class="sentence-block">顔、ピント、特徴色の順に注目点を探す。</span><span class="sentence-block">極端な画面比率でも、作品の中心を守り抜きます。</span></p></article>
+        <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 24V8h22v16z"/><path d="M10 20l4-5 3 3 4-6 5 8"/><circle cx="11" cy="12" r="2"/></svg><b>すべての動きに、品格を。</b><p><span class="sentence-block">ゆっくり始まり、なめらかに進み、余韻を残して止まる。</span><span class="sentence-block">写真を見る時間を、決して邪魔しません。</span></p></article>
+      </div>
+    </section>
+    <section class="panel" aria-label="DearSceneの対応規模とメディア形式">
+      <div class="capability-shell">
+        <header class="capability-head">
+          <div>
+            <span class="capability-eyebrow">REDISCOVER YOUR ARCHIVE</span>
+            <h2 class="capability-title">眠っていた一枚が、<br>また人生を動かす。</h2>
+          </div>
+          <p class="capability-lead"><span class="sentence-block">フォルダーを選ぶだけで、大量の写真と動画が新しい順序と構図で流れ始めます。</span><span class="sentence-block">検索も整理もいらない。</span><span class="sentence-block">忘れていた一枚が、もう一度、物語の中心へ戻ってきます。</span></p>
+        </header>
+
+        <div class="capability-grid">
+          <article class="capability-item">
+            <div class="line-icon multi-line" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="capability-code">01 · MULTI INSTANCE</span>
+            <strong class="capability-value">複数起動</strong>
+            <p class="capability-copy">TV、モニター、プロジェクターへ、それぞれ異なるライブラリと表現を。</p>
+          </article>
+
+          <article class="capability-item">
+            <div class="line-icon mix-line" aria-hidden="true"><span class="mix-photo"></span><i></i><span class="mix-video"></span></div>
+            <span class="capability-code">02 · PHOTO + VIDEO</span>
+            <strong class="capability-value">混在再生</strong>
+            <p class="capability-copy">静止画と動画を分けずに選び、ひと続きの時間として再生。</p>
+          </article>
+
+          <article class="capability-item">
+            <div class="line-icon files-line" aria-hidden="true"><i class="file-card">JPG</i><i class="file-card">HEIC</i><i class="file-card">RAW</i><i class="file-card">MP4</i></div>
+            <span class="capability-code">03 · 39 EXTENSIONS</span>
+            <strong class="capability-value formats-value">画像 28 · 動画 11</strong>
+            <p class="capability-copy">Windows標準と<wbr><span class="no-split">同梱FFmpeg、</span><wbr><span class="no-split">RAWプレビューで再生。<sup class="note-ref"><a href="#release-note-1" aria-label="注記1">1</a></sup></span></p>
+          </article>
+
+          <article class="capability-item">
+            <div class="line-icon scale-line" aria-hidden="true"><strong>∞</strong><span class="scale-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+            <span class="capability-code">04 · NO FIXED CAP</span>
+            <strong class="capability-value">件数上限なし<sup class="note-ref"><a href="#release-note-2" aria-label="注記2">2</a></sup></strong>
+            <p class="capability-copy"><span class="sentence-block">大規模ライブラリのための、</span><span class="sentence-block">固定上限を設けない設計。</span></p>
+          </article>
+        </div>
+
+        <div class="extension-register" aria-label="対応拡張子一覧">
+          <div class="extension-row"><b>PHOTO · 28</b><span>JPG · JPEG · PNG · BMP · GIF · TIF · TIFF · WEBP · HEIC · HEIF · AVIF · JXL · JP2 · J2K · EXR · HDR · JXR · DDS · ICO · ARW · CR2 · CR3 · NEF · DNG · RAF · ORF · RW2 · PEF</span></div>
+          <div class="extension-row"><b>VIDEO · 11</b><span>MP4 · M4V · MOV · AVI · WMV · MPG · MPEG · MKV · WEBM · MTS · M2TS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="local-promise" aria-label="ローカルで完結するプライバシー設計">
+      <div class="local-promise-card" data-reveal>
+        <div class="local-copy">
+          <span class="local-kicker">PRIVATE BY NATURE</span>
+          <h2>思い出は、<br>あなたの場所に残る。</h2>
+          <p><span class="sentence-block">DearSceneは、選んだフォルダーをこのPCの中で読み取ります。</span><span class="sentence-block">クラウドへのアップロードも、ライブラリの複製も不要。</span><span class="sentence-block">お気に入りや非表示を選んでも、元の写真と動画には触れません。</span></p>
+          <div class="trust-row"><span>LOCAL PLAYBACK</span><span>NO UPLOAD</span><span>ORIGINALS UNTOUCHED</span></div>
+        </div>
+        <div class="local-visual" aria-hidden="true">
+          <div class="privacy-orbit">
+            <span class="orbit-label l1">YOUR PC</span><span class="orbit-label l2">NO CLOUD</span><span class="orbit-label l3">ORIGINAL FILES</span>
+            <div class="private-core"><svg viewBox="0 0 32 32"><path d="M6 11h8l2.4 2.6H27v12H6z"/><path d="M11 11V8h7l2 2.2"/><path d="M13 19h7M16.5 15.5v7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="use-scenes" aria-label="DearSceneの利用シーン">
+      <article class="use-scene living">
+        <img class="scene-photo" src="assets/scene-family-ambient.png" alt="白と木のスカンジナビアンリビングで、家族団らんのそばに静かに思い出を映すDearScene">
+        <div class="scene-tag glass"><i></i><span>HOME</span></div>
+        <div class="scene-copy"><h2>子どもの成長も、<br>あの旅の光も。</h2><p><span class="sentence-block">撮ったまま眠っていた家族写真を、リビングの風景へ。</span><span class="sentence-block">毎日が、忘れていた記憶との小さな再会になります。</span></p></div>
+      </article>
+
+      <article class="use-scene study">
+        <img class="scene-photo" src="assets/scene-study.png" alt="落ち着いた書斎で、完成作品とボツ作品を横画面と縦画面で見つけ直すDearScene">
+        <div class="scene-tag glass"><i></i><span>CREATOR</span></div>
+        <div class="scene-copy"><h2>傑作にも、<br>ボツにしていた一枚も。</h2><p><span class="sentence-block">完成作も、選ばなかった作品も、ひとつの制作史です。</span><span class="sentence-block">流して眺めれば、当時は見逃した価値が、次の着想へ変わります。</span></p></div>
+      </article>
+
+      <article class="use-scene showroom">
+        <img class="scene-photo" src="assets/scene-showroom.png" alt="ショールームで製品画像、実績、ブランド映像を静かに再生するDearScene">
+        <div class="scene-tag glass"><i></i><span>BUSINESS</span></div>
+        <div class="scene-copy"><h2>語らなくても、<br>実績は伝わる。</h2><p><span class="sentence-block">会社やショールームの空気を、ブランドの世界観で満たす。</span><span class="sentence-block">商談の最中にも、製品と実績が静かに語り続けます。</span></p></div>
+      </article>
+
+      <article class="use-scene architect">
+        <img class="scene-photo" src="assets/scene-architect.png" alt="設計者のオフィスで過去事例と参考資料を施主へ示すDearScene">
+        <div class="scene-tag glass"><i></i><span>PROFESSIONAL</span></div>
+        <div class="scene-copy"><h2>資料の山を、<br>次のひらめきへ。</h2><p><span class="sentence-block">建築、デザイン、教育、研究の資料群を、生きたイメージボードへ。</span><span class="sentence-block">過去の蓄積が、思考と対話を動かします。</span></p></div>
+      </article>
+
+      <article class="use-scene ambient-evening">
+        <img class="scene-photo" src="assets/scene-ambient-evening.png" alt="読書や家族の時間を邪魔せず、壁面に複数の思い出が静かに浮かぶDearScene">
+        <div class="scene-tag glass"><i></i><span>AMBIENT</span></div>
+        <div class="scene-copy"><h2>探すのをやめる。<br>発見が始まる。</h2><p><span class="sentence-block">お気に入りを選び直す必要はありません。</span><span class="sentence-block">未鑑賞を優先しながら、アーカイブ全体が偏りなく巡り始めます。</span></p></div>
+      </article>
+
+      <article class="use-scene ambient-ust">
+        <img class="scene-photo" src="assets/scene-ambient-ust.png" alt="ホテルや店舗の壁面へ縦長写真3枚を額縁のように投影するDearScene">
+        <div class="scene-tag glass"><i></i><span>SPACE</span></div>
+        <div class="scene-copy"><h2>ただの壁を、<br>忘れられない景色へ。</h2><p><span class="sentence-block">ホテル、店舗、待合室、イベント空間を、静かなデジタル展示へ。</span><span class="sentence-block">縦画面もプロジェクターも、空間の新しい窓になります。</span></p></div>
+      </article>
+    </section>
+
+    <section class="window-uses" aria-label="壁面投影で複数のDearSceneを使う例">
+      <article class="window-use" aria-label="白い壁面へ縦長のDearSceneを3画面、窓のように直接投影">
+        <img class="window-room" src="assets/scene-projector.png" alt="白い壁面に縦長の風景を3画面、枠なしで投影するDearScene">
+        <div class="window-label glass">WINDOW</div>
+      </article>
+      <article class="window-use" aria-label="白い壁面へ異なる写真と動画を複数同時投影">
+        <img class="window-room" src="assets/scene-projector-gallery.png" alt="白い壁面に家族、旅、風景、建築の写真や動画を複数、枠なしで投影するDearScene">
+        <div class="window-label glass">WALL</div>
+      </article>
+    </section>
+
+    <section class="product-guide" aria-label="DearSceneの機能と使い方">
+      <div class="guide-inner">
+        <header class="guide-intro">
+          <div>
+            <span class="guide-kicker">SIMPLE BY DESIGN</span>
+            <h2 class="guide-title">選ぶのはフォルダー。<br>手に入るのは、再発見。</h2>
+          </div>
+          <p><span class="sentence-block">DearSceneは、ローカルの作品アーカイブを整理し直さず、そのまま再生します。</span><span class="sentence-block">顔、ピント、特徴色を見ながら構図を整え、写真と動画を、暮らしや仕事の中心へ戻します。</span></p>
+        </header>
+
+        <div class="audience-grid" aria-label="DearSceneが応える4つの利用目的">
+          <div class="audience-item"><b>HOME</b><span>子ども、家族、旅行の記憶をリビングで再発見。</span></div>
+          <div class="audience-item"><b>CREATOR</b><span>完成作とボツ作品から、次の着想を再発見。</span></div>
+          <div class="audience-item"><b>BUSINESS</b><span>実績や製品を、商談と空間の中で静かに紹介。</span></div>
+          <div class="audience-item"><b>SPACE</b><span>店舗、宿泊、待合、イベントの壁面を展示へ。</span></div>
+        </div>
+
+        <nav class="feature-index glass" aria-label="DearSceneの機能一覧">
+          <a href="#aspect">構図</a>
+          <a href="#layouts">分割表示</a>
+          <a href="#focus">スマート構図</a>
+          <a href="#look">フィルムルック</a>
+          <a href="#timing">時間と切替</a>
+          <a href="#rediscovery">再発見</a>
+          <a href="#media">写真＋動画</a>
+          <a href="#reliability">安定再生</a>
+          <a href="#interface">操作</a>
+          <a href="#start">はじめ方</a>
+        </nav>
+
+        <div class="feature-stack">
+          <article class="feature-story" id="aspect">
+            <div class="feature-copy">
+              <span class="feature-number">01 · ASPECT</span>
+              <h3>どんな縦横比も、<br>作品の味方に。</h3>
+              <p>一眼レフの縦位置写真を横長のTVで見ても、余白は残しません。周囲を同じ写真のBlur Fillで満たすか、ウィンドウ比率の変化に追従して再クロップ。写真と動画は別々に合わせ方を選べるため、写真はスマート構図で画面いっぱい、動画は全編が見えるぼかし背景付き、といった使い分けもできます。設定は1枚表示だけでなく、メイソンリーと短冊の各枠にも反映されます。</p>
+              <div class="feature-proof"><span>PHOTO / VIDEO別設定</span><span>Blur Fill</span><span>Adaptive Crop</span></div>
+            </div>
+            <div class="feature-visual ratio-demo" aria-label="横長画面のBlur Fillと、異なるウィンドウ比率へ追従するスマートクロップ">
+              <div class="ratio-card"><div class="ratio-stage blur-stage"><img src="assets/baby.jpg" alt="横長画面の余白を同じ写真のぼかし背景で満たす表示"></div><small>16:9 · BLUR FILL</small></div>
+              <div class="ratio-card"><div class="ratio-tracking"><div class="adaptive-window wide"><img src="assets/baby.jpg" alt="横長ウィンドウへの自動クロップ"></div><div class="adaptive-window square"><img src="assets/baby.jpg" alt="正方形ウィンドウへの自動クロップ"></div><div class="adaptive-window tall"><img src="assets/baby.jpg" alt="縦長ウィンドウへの自動クロップ"></div><i class="tracking-line" aria-hidden="true"></i></div><small>ANY WINDOW · SMART CROP</small></div>
+            </div>
+          </article>
+
+          <article class="feature-story reverse" id="layouts">
+            <div class="feature-copy">
+              <span class="feature-number">02 · MULTI LAYOUT</span>
+              <h3>ひとつの画面を、<br>無限のギャラリーへ。</h3>
+              <p>メイソンリーは3:4、黄金比、16:9を縦横に組み合わせ、写真の向きに合う枠へ優先配置します。</p>
+              <p>短冊は貴金属比と均等な隙間を自動計算し、パノラマを一作品のまま複数の窓へ連続表示できます。</p>
+              <p>分割数の3倍を先読みし、描画できるページだけへ穏やかなガウス曲線で切り替えます。<sup class="note-ref"><a href="#release-note-3" aria-label="注記3">3</a></sup></p>
+              <div class="feature-proof"><span>FRESH PAGE SURFACE</span><span>3× READY BUFFER</span><span>GAUSSIAN MOTION</span></div>
+            </div>
+            <div class="feature-visual presentation-layout-demo" aria-label="DearScene v1.21の比率適合メイソンリー、縦短冊、横短冊の表示例">
+              <img src="assets/presentation-layouts-v116.png" alt="3対4・黄金比・16対9を組み合わせたメイソンリー、貴金属比の縦短冊、1作品を黒枠で横短冊へ分割するパノラマ表示">
+            </div>
+          </article>
+
+          <article class="feature-story reverse" id="focus">
+            <div class="feature-copy">
+              <span class="feature-number">03 · SMART COMPOSITION</span>
+              <h3>主役を見つける。<br>最後まで、離さない。</h3>
+              <p>顔、ピント、特徴色の順で主題を探します。背景だけが大きくぼけた写真でも、小さな合焦部分を多段スケールで見つけます。</p>
+              <p>極端な短冊でも主題の安全域を保ち、動き始めから停止まで顔や合焦点を画角の外へ出しません。<sup class="note-ref"><a href="#release-note-4" aria-label="注記4">4</a></sup></p>
+              <div class="feature-proof"><span>FACE &gt; FOCUS &gt; COLOR</span><span>端末内解析</span><span>SUBJECT SAFE AREA</span></div>
+            </div>
+            <div class="feature-visual focus-demo" aria-label="主題を判定して穏やかに画角を移動する例">
+              <img src="assets/baby.jpg" alt="顔とピント領域を含む家族写真">
+              <div class="focus-path" aria-hidden="true"></div>
+              <div class="focus-rank glass"><span><i>1</i>人物・イラスト・動物の顔</span><span><i>2</i>ピントの合った領域</span><span><i>3</i>特徴的な色の領域</span></div>
+              <div class="motion-track" aria-hidden="true"></div>
+            </div>
+          </article>
+
+          <article class="feature-story" id="look">
+            <div class="feature-copy">
+              <span class="feature-number">04 · FILM LOOKS</span>
+              <h3>同じ一枚に、<br>まったく新しい温度を。</h3>
+              <p>カラー、白黒、モダンカラー、フィルムルックまで20種類。強さを調整しながら再生中にも切り替えられます。選んだルックだけを1〜999枚ごとにランダムで巡らせれば、見慣れた写真にも新しい気配が生まれます。</p>
+              <div class="feature-proof"><span>20 Presets</span><span>1–999枚ごと</span><span>非破壊</span></div>
+            </div>
+            <div class="feature-visual look-demo" aria-label="同じ風景写真に4種類のフィルムルックを適用した例">
+              <div class="look-card"><img src="assets/mountain.jpg" alt="オリジナルの風景写真"><span>ORIGINAL</span></div>
+              <div class="look-card look-portra"><img src="assets/mountain.jpg" alt="暖かいフィルム調の風景写真"><span>PORTRA-LIKE</span></div>
+              <div class="look-card look-cine"><img src="assets/mountain.jpg" alt="映画調の風景写真"><span>CINE 800T-LIKE</span></div>
+              <div class="look-card look-hp5"><img src="assets/mountain.jpg" alt="白黒フィルム調の風景写真"><span>HP5-LIKE</span></div>
+            </div>
+          </article>
+
+          <article class="feature-story reverse" id="timing">
+            <div class="feature-copy">
+              <span class="feature-number">05 · TIME &amp; TRANSITION</span>
+              <h3>切り替わる一秒まで、<br>美しく。</h3>
+              <p>写真は標準15秒。手早い1秒から、作品をじっくり見る3600秒まで設定できます。動画は全編または冒頭の指定秒数を再生し、音声は初期状態でミュート。8種類の滑らかな切り替えが、写真と写真の間にも余韻をつくります。</p>
+              <div class="feature-proof"><span>15 SEC Default</span><span>8 Transitions</span><span>Video Muted</span></div>
+            </div>
+            <div class="feature-visual timing-demo" aria-label="表示時間とトランジションの説明">
+              <div class="timing-line" aria-hidden="true"><div class="timing-progress"></div><i class="timing-node"></i><i class="timing-node"></i><i class="timing-node"></i><i class="timing-node"></i><span class="timing-caption start">開始</span><span class="timing-caption subject">主題へ</span><span class="timing-caption hold">1秒静止 → 切替</span></div>
+              <div class="transition-row">
+                <div class="transition-card"><img src="assets/mountain.jpg" alt=""><img src="assets/baby.jpg" alt=""><small>SMOOTH</small></div>
+                <div class="transition-card"><img src="assets/studio.jpg" alt=""><img src="assets/render-house.jpg" alt=""><small>FILM</small></div>
+                <div class="transition-card"><img src="assets/family-travel.jpg" alt=""><img src="assets/beach.jpg" alt=""><small>SLIDE</small></div>
+                <div class="transition-card"><img src="assets/japan-night.jpg" alt=""><img src="assets/mountain.jpg" alt=""><small>CUT</small></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature-story" id="rediscovery">
+            <div class="feature-copy">
+              <span class="feature-number">06 · REDISCOVERY</span>
+              <h3>忘れていた一枚が、<br>次の発見になる。</h3>
+              <p>ランダムは一巡するまで同じファイルを繰り返しません。順番通り、未鑑賞優先、おすすめも選択可能。気になった一枚はハートボタンまたはLキーでお気に入りへ。見せたくない写真は元ファイルを消さずに隠せます。</p>
+              <div class="feature-proof"><span>No Repeat</span><span>未鑑賞優先</span><span>元ファイル非変更</span></div>
+            </div>
+            <div class="feature-visual rediscovery-demo" aria-label="3種類の再生モードと鑑賞中の操作">
+              <div class="mode-row">
+                <div class="mode-card"><div class="mode-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><b>RANDOM</b><p>一巡するまで重複せず、開始位置もシャッフル。</p></div>
+                <div class="mode-card"><div class="mode-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><b>SEQUENTIAL</b><p>フォルダーとファイルの流れを保って順番に。</p></div>
+                <div class="mode-card"><div class="mode-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><b>FOR YOU</b><p>未鑑賞と異なるフォルダーを優先して再発見。</p></div>
+              </div>
+              <div class="memory-actions"><span>♡ お気に入り</span><span>⊘ 非表示</span><span>↶ 元に戻す</span></div>
+            </div>
+          </article>
+
+          <article class="feature-story reverse" id="media">
+            <div class="feature-copy">
+              <span class="feature-number">07 · PHOTO + VIDEO</span>
+              <h3>写真か、動画か。<br>もう、分けなくていい。</h3>
+              <p>静止画と動画はひとつの再生列へ。写真だけ、動画だけ、複数の拡張子だけにも絞れます。</p>
+              <p>自動回転機能は廃止しました。誤ったEXIF方向タグに影響されず、保存された画素そのものの縦横でメイソンリーの枠向きを判断します。</p>
+              <div class="feature-proof"><span>PHOTO 28</span><span>VIDEO 11</span><span>RAW + FFmpeg</span></div>
+            </div>
+            <div class="feature-visual media-demo" aria-label="写真と動画の混在再生">
+              <div class="media-pane"><img src="assets/baby.jpg" alt="家族の縦写真"><div class="media-badges"><span>PHOTO</span><span>RAW</span><span>PIXEL GEOMETRY</span></div></div>
+              <div class="media-pane video"><img src="assets/family-travel.jpg" alt="旅行動画のイメージ"><div class="media-badges"><span>VIDEO</span><span>CENTER CROP</span><span>MUTED</span></div></div>
+            </div>
+          </article>
+
+          <article class="feature-story" id="reliability">
+            <div class="feature-copy">
+              <span class="feature-number">08 · ALWAYS READY</span>
+              <h3>次の一枚は、<br><span class="no-split">見えない場所で、</span><wbr><span class="no-split">もう準備済み。</span></h3>
+              <p>1枚表示は写真3枚、分割表示は枠数の3倍を先読みします。壊れたファイルや準備中の動画は、表示できる代替写真へ安全に差し替えます。</p>
+              <p>常時監視が更新停止や欠けた描画面を検出し、現在の写真を保持したまま別経路へ迂回します。長尺動画が間に合わない時も、RAM上の写真で再生を止めません。</p>
+              <p>再生中のフォルダーへ写真が追加されても、書き込み完了後だけ自動登録。USB HDDを複数窓で共有する環境でも、読み出し競合を抑えます。<sup class="note-ref"><a href="#release-note-5" aria-label="注記5">5</a></sup></p>
+              <div class="feature-proof"><span>Always-on Watchdog</span><span>RAM Photo Fallback</span><span>Live Folder Monitor</span></div>
+            </div>
+            <div class="feature-visual reliability-demo" aria-label="候補を先読みし、壊れたファイルを除外して再生する流れ">
+              <div class="pipeline">
+                <div class="pipe-box"><b>CANDIDATE</b><span>DSC_2041.RAW</span><span class="skip">broken.webm</span><span>trip_043.mp4</span></div><i class="pipe-arrow" aria-hidden="true"></i>
+                <div class="pipe-box"><b>READY</b><span class="ready">01 · PHOTO</span><span class="ready">02 · PHOTO</span><span class="ready">03 · VIDEO</span></div><i class="pipe-arrow" aria-hidden="true"></i>
+                <div class="pipe-box"><b>PLAY</b><span class="ready">FRAME HELD</span><span>次の表示まで維持</span></div>
+              </div>
+              <div class="reliability-foot"><span>USB I/O<br>6窓で調停</span><span>長尺動画<br>写真へ即時退避</span><span>LIVE WRITE<br>安定後に自動登録</span></div>
+            </div>
+          </article>
+
+          <article class="feature-story reverse" id="interface">
+            <div class="feature-copy">
+              <span class="feature-number">09 · PRODUCT GLASS</span>
+              <h3>操作は消える。<br>作品だけが残る。</h3>
+              <p>大きなアイコンと文字、48px以上のタッチ領域、迷わない4カテゴリ。ダブルクリックで再生画面を本当の全画面へ切り替え、Windowsのタスクバーまで覆います。一定時間で操作部もカーソルも消え、写真のアニメーションをマウス移動と誤認して再表示することもありません。設定は次の起動へ引き継がれます。</p>
+              <div class="feature-proof"><span>48px Touch</span><span>Taskbar-cover Fullscreen</span><span>設定を保存</span></div>
+            </div>
+            <div class="feature-visual ui-demo" aria-label="DearSceneの構図画面とテーマ設定">
+              <div class="ui-main"><div class="ui-shot"><img src="assets/ui-framing.png" alt="DearSceneの構図設定画面"><small>構図</small></div></div>
+              <div class="ui-side"><div class="ui-shot"><img src="assets/ui-light.png" alt="ライトテーマのDearScene"><small>LIGHT</small></div><div class="ui-shot"><img src="assets/ui-custom.png" alt="任意色テーマのDearScene"><small>CUSTOM</small></div></div>
+            </div>
+          </article>
+        </div>
+
+        <section class="quick-start" id="start" aria-label="DearSceneの始め方">
+          <header class="quick-start-head"><h3>画像を探さない。<br>フォルダーを選ぶ。</h3><p><span class="sentence-block">画像や動画が見える末端フォルダーまで開き、「現在のフォルダーを選択」を押します。</span><span class="sentence-block">サムネイルは場所の確認用です。</span><span class="sentence-block">ファイルを一枚ずつ選ぶ必要はありません。</span></p></header>
+          <div class="start-grid">
+            <div class="start-step"><i>1</i><b>中身を確認</b><p>末端フォルダーでも写真・動画のサムネイルが見えるので、再生したい場所か確認します。</p></div>
+            <div class="start-step"><i>2</i><b>フォルダーを指定</b><p>「現在のフォルダーを選択」を押します。別階層へ移動して追加し、複数フォルダーもまとめて指定できます。</p></div>
+            <div class="start-step"><i>3</i><b>再生</b><p>まずは標準設定で。構図、時間、表現は鑑賞中にも変えられます。</p></div>
+          </div>
+          <div class="picker-features"><span>MEDIA THUMBNAILS</span><span>MULTI FOLDER</span><span>SELECTED LIST</span><span>親フォルダーはサブフォルダーも対象</span></div>
+          <div class="picker-shot" role="img" aria-label="家族の思い出フォルダーで写真サムネイルを確認し、選択済み一覧へ追加するDearSceneの公開用画面例">
+            <div class="public-picker">
+              <div class="public-toolbar" aria-hidden="true"><span class="public-tool primary">▱</span><span class="public-tool">‹</span><span class="public-tool">↑</span><span class="public-tool">⌂</span><span class="public-tool">▤</span><span class="public-tool close">×</span></div>
+              <div class="public-address">ホーム\ピクチャ\家族の思い出\2026年</div>
+              <div class="public-picker-body">
+                <div class="public-tree"><div class="tree-row root">このPC</div><div class="tree-row child">ピクチャ</div><div class="tree-row child">家族の思い出</div><div class="tree-row child active">2026年</div><div class="tree-row child">旅行</div><div class="tree-row child">作品</div></div>
+                <div class="public-media">
+                  <div class="public-media-card"><img src="assets/baby.jpg" alt=""><span>家族の日曜日.jpg</span></div><div class="public-media-card"><img src="assets/family-travel.jpg" alt=""><span>夏の旅行.mp4</span></div><div class="public-media-card"><img src="assets/mountain.jpg" alt=""><span>湖畔の朝.jpg</span></div><div class="public-media-card"><img src="assets/beach.jpg" alt=""><span>海辺の午後.jpg</span></div><div class="public-media-card"><img src="assets/japan-night.jpg" alt=""><span>夜の散歩.jpg</span></div><div class="public-media-card"><img src="assets/study-works.jpg" alt=""><span>作品アルバム.jpg</span></div>
+                </div>
+                <div class="public-selected"><b>選択済みフォルダー<br>1件</b><div class="selected-pill"><span>2026年</span><span>×</span></div></div>
+              </div>
+              <div class="public-picker-actions"><span class="public-action">現在の選択を外す</span><span class="public-action apply">1件を適用</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="beta-release" id="beta" aria-labelledby="beta-title">
+      <div class="beta-release-inner" data-reveal>
+        <span class="beta-release-kicker">DEARSCENE v1.21 BETA</span>
+        <h2 id="beta-title"><span class="sentence-block">あなたのアーカイブを、</span><span class="sentence-block">もう一度、生きた景色へ。</span></h2>
+        <p><span class="sentence-block">Windows 10／11向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
+        <div class="beta-actions">
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.21-beta.1/DearScene-v1.21.exe">DearScene v1.21をダウンロード</a>
+          <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener">意見・不具合を送る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.21-beta.1">リリース情報を見る</a>
+        </div>
+        <small>ベータ版のため、重要な写真・動画は元の場所に保持したままご利用ください。DearSceneは元ファイルを移動・編集しません。</small>
+      </div>
+    </section>
+
+    <section class="quiet-brand" aria-label="DearScene"><div><img src="assets/dearscene-icon.png" alt="DearScene"><b>DearScene</b></div></section>
+  </main>
+
+  <aside class="release-disclosures" id="release-notes" aria-label="リリースに関する注記">
+    <ol>
+      <li id="release-note-1">対応形式は、Windowsの標準デコーダー、同梱FFmpeg、RAW内蔵プレビューを組み合わせたものです。ファイルの生成方法や内部形式によっては再生できない場合があります。</li>
+      <li id="release-note-2">アプリ内に固定の登録件数上限はありません。実際に扱える件数、検索時間、先読み速度は、PCの性能、メモリ容量、保存先の速度、同時起動数によって変わります。</li>
+      <li id="release-note-3">メイソンリーと短冊表示は、1枚表示より高い読み出し・デコード負荷がかかります。低速な外付けストレージや長尺動画を使用する場合は、表示時間を長めに設定してください。準備が間に合わない動画は、読込済み写真へ置き換わる場合があります。</li>
+      <li id="release-note-4">スマート構図は、画像内の顔らしさ、ピント、特徴色から端末内で注目位置を推定します。作品の内容や画質によって結果は異なり、人物を識別・特定する機能ではありません。</li>
+      <li id="release-note-5">停止監視と迂回再生は、すべてのPC、グラフィックドライバー、外部ストレージ構成で無停止動作を保証するものではありません。再生中に追加されたファイルは、書き込みの安定を確認してから候補へ加わります。</li>
+      <li>DearScene v1.21はWindows 10／11向けベータ版です。掲載している画面、仕様、対応形式は今後の更新で変更される場合があります。</li>
+    </ol>
+  </aside>
+
+  <footer class="credits" aria-label="写真素材の出典">
+    <span>Photos</span>
+    <a href="https://www.pexels.com/photo/room-interior-with-a-television-set-on-the-wall-18289778/">Adrien Daurenjou</a>
+    <a href="https://www.pexels.com/photo/happy-family-moments-with-newborn-baby-35119975/">Alexander Mass</a>
+    <a href="https://www.pexels.com/photo/scenic-view-of-a-mountain-reflecting-on-a-lake-19131418/">M. Emin Bilir</a>
+    <a href="https://www.pexels.com/photo/family-enjoying-a-beach-vacation-30225585/">Asad Photo Maldives</a>
+    <a href="https://www.pexels.com/photo/interior-of-a-modern-showroom-space-20313879/">The Juggle Studio</a>
+    <a href="https://www.pexels.com/photo/man-presenting-on-screen-6285129/">Gustavo Fring</a>
+    <a href="https://www.pexels.com/photo/people-discussing-the-floor-plan-9052547/">SHVETS production</a>
+    <a href="https://www.pexels.com/photo/a-3d-rendering-of-a-modern-house-13203191/">Bilal Mansuri</a>
+  </footer>
+  <script>
+    (() => {
+      const revealTargets = document.querySelectorAll('.capability-shell,.use-scene,.window-use,.guide-intro,.audience-grid,.feature-story,.quick-start,.quiet-brand');
+      revealTargets.forEach((element) => element.setAttribute('data-reveal', ''));
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('in-view'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      document.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element));
+    })();
+  </script>
+</body>
+</html>

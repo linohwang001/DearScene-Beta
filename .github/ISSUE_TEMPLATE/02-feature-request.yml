@@ -1,0 +1,24 @@
+name: 機能を提案
+description: DearSceneで実現したい鑑賞体験を提案します。
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: scene
+    attributes:
+      label: 利用シーン
+      description: 誰が、どこで、何を見たいかを教えてください。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 欲しい動作
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: それによって良くなること
+    validations:
+      required: true
