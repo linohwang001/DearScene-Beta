@@ -15,7 +15,7 @@
 DearSceneの実行ファイルは、GitHub Releasesからのみ入手してください。各リリースの `MANIFEST` に記載されたSHA-256と、ダウンロード後のファイルを照合できます。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.22.exe
+Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.23.exe
 ```
 
 値が1文字でも異なる場合は実行せず、ファイルを削除して公式リリースから再取得してください。

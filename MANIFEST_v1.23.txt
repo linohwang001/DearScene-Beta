@@ -1,0 +1,28 @@
+DearScene v1.23 Beta 1 Release Manifest
+Build date: 2026-08-24 JST
+Application version: 1.23.0.0
+
+DearScene-v1.23.exe
+Size: 50036736 bytes
+SHA-256: 0A0E743394810FBE7EB4B477DA56643DDDE6E757A6F49206E2842354B23D5287
+
+DearScene-Scenes-v1.23.html
+Size: 39517510 bytes
+SHA-256: 0A20B5700031E0696B2EFCB47B079EEBB6F8281B4B6F928C208198210DE9A83E
+
+Embedded FFmpeg executable (after extraction)
+SHA-256: A9E67ABD4687BD30BFDA8DBF304661271894422D0FA5E69FD72A9B7A9095F29D
+
+USB SSD video stress verification
+- Source storage: USB-connected SSD
+- Concurrent DearScene windows: 4
+- Layout: 3 vertical strips per window
+- Media: video only
+- Slide interval: 3 seconds
+- Completed advances: 7 per window
+- Live video frames at completion: 3/3 per window
+- Recovery events: 0
+- Static safety substitutions: 0
+- Black-frame detections: 0
+
+This is a prerelease build for beta evaluation.

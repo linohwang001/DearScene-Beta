@@ -4,12 +4,12 @@
 
 DearSceneは、フォルダーに眠る写真と動画を選び、整え、静かにめぐらせるWindows向けローカルメディアディスプレイです。
 
-## DearScene v1.22 Beta
+## DearScene v1.23 Beta
 
 - [紹介ページをブラウザで見る](https://linohwang001.github.io/DearScene-Beta/)
-- [DearScene v1.22をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.4/DearScene-v1.22.exe)
+- [DearScene v1.23をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.23-beta.1/DearScene-v1.23.exe)
 - [意見・不具合をGoogle Formsで送る](https://forms.gle/5TT5WFhG5xzA45oW9)
-- [v1.22 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.4)
+- [v1.23 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.23-beta.1)
 
 ## 動作環境
 
@@ -24,14 +24,16 @@ DearSceneは、フォルダーに眠る写真と動画を選び、整え、静�
 
 DearSceneは元の写真・動画を移動・編集しません。ベータ版のため、大切なデータは必ず別途バックアップしてください。
 
-## v1.22の安全対策
+## v1.23の安定性・安全対策
 
 - 検証済み内蔵FFmpegだけを利用し、ビルド時・展開時・起動前にSHA-256を照合
 - FFmpegの入力をローカルファイルとアプリ内パイプへ限定
 - DLLをWindows System32からのみ読み込み、RAW内蔵プレビューは128MiBを上限に設定
-- 6窓同時読込みでも各窓が進むI/O制御と、長尺動画が遅い場合のローカルポスター迂回を追加
+- 分割表示用の短い互換動画を事前に準備し、長尺動画の全尺変換を待たずに全枠をライブ再生
+- 動画デコーダーをページ間で安全に引き渡し、準備待ちを黒画面や停止として誤検出しない監視へ改善
+- USB接続SSDの動画で4窓×短冊3分割（合計12動画）、3秒切替、各窓7回更新を実機確認。黒画面、迂回、静止画代替はいずれも0件
 
-詳細は[リリースノート](RELEASE_NOTES_v1.22.md)、[セキュリティポリシー](SECURITY.md)、[ベータ利用条件](TERMS.md)を確認してください。
+詳細は[リリースノート](RELEASE_NOTES_v1.23.md)、[セキュリティポリシー](SECURITY.md)、[ベータ利用条件](TERMS.md)を確認してください。
 
 ## フィードバック
 
@@ -39,10 +41,10 @@ DearSceneは元の写真・動画を移動・編集しません。ベータ版�
 
 ## ファイル検証
 
-配布ファイルのSHA-256は [MANIFEST_v1.22.txt](MANIFEST_v1.22.txt) に記載しています。現在のEXEはコード署名されていないため、GitHub Releases以外から入手したファイルは実行せず、次のコマンドで照合してください。
+配布ファイルのSHA-256は [MANIFEST_v1.23.txt](MANIFEST_v1.23.txt) に記載しています。現在のEXEはコード署名されていないため、GitHub Releases以外から入手したファイルは実行せず、次のコマンドで照合してください。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.22.exe
+Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.23.exe
 ```
 
 一致しない場合は実行しないでください。組織管理PCのセキュリティ警告は回避せず、管理者へ確認してください。
