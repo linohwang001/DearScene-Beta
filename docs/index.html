@@ -313,7 +313,7 @@
     .reliability-demo { padding:clamp(24px,4vw,44px); }.pipeline{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:center}.pipe-box{min-height:120px;padding:17px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.025)}.pipe-box b{display:block;margin-bottom:12px;color:rgba(255,255,255,.74);font-size:10px;letter-spacing:.1em}.pipe-box span{display:block;padding:5px 0;color:rgba(255,255,255,.38);font-size:9px}.pipe-box .ready{color:rgba(255,255,255,.78)}.pipe-box .skip{text-decoration:line-through;opacity:.45}.pipe-arrow{height:1px;background:rgba(255,255,255,.22);position:relative}.pipe-arrow::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid rgba(255,255,255,.4);border-right:1px solid rgba(255,255,255,.4);transform:rotate(45deg)}.reliability-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.reliability-foot span{min-height:45px;padding:12px;border-radius:12px;background:rgba(255,255,255,.045);color:rgba(255,255,255,.46);font-size:9px;line-height:1.45}
 
     .ui-demo { display:grid; grid-template-columns:1.35fr .65fr; gap:10px; padding:10px; }.ui-main,.ui-side{display:grid;gap:10px}.ui-shot{position:relative;overflow:hidden;border-radius:15px;background:#111}.ui-shot img{height:auto;aspect-ratio:auto;object-fit:contain}.ui-shot small{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;background:rgba(7,9,10,.56);color:rgba(255,255,255,.68);font-size:8px;backdrop-filter:blur(10px)}
-    .presentation-layout-demo { display:grid; grid-template-columns:1.15fr .76fr 1fr; gap:8px; padding:10px; background:#080a0c; }
+    .presentation-layout-demo { display:grid; grid-template-columns:1.08fr 1.08fr .76fr 1fr; gap:8px; padding:10px; background:#080a0c; }
     .layout-showcase { min-width:0; }
     .layout-screen { position:relative; aspect-ratio:16/11; overflow:hidden; padding:6px; border-radius:14px; background:#020304; box-shadow:inset 0 0 0 1px rgba(255,255,255,.09); }
     .layout-showcase small { display:block; min-height:31px; padding:10px 2px 1px; color:rgba(255,255,255,.42); font-size:7px; line-height:1.45; letter-spacing:.08em; text-align:center; }
@@ -322,6 +322,10 @@
     .masonry-tile img { min-width:0; min-height:0; transform:scale(1.02); animation:layout-photo-breathe 14s cubic-bezier(.42,0,.24,1) infinite alternate; }
     .masonry-tile:nth-child(1){grid-column:1/3;grid-row:1/3}.masonry-tile:nth-child(2){grid-column:3/5;grid-row:1}.masonry-tile:nth-child(3){grid-column:3;grid-row:2/4}.masonry-tile:nth-child(4){grid-column:4;grid-row:2/4}.masonry-tile:nth-child(5){grid-column:1;grid-row:3}.masonry-tile:nth-child(6){grid-column:2;grid-row:3}
     .masonry-tile:nth-child(2) img,.masonry-tile:nth-child(5) img{animation-delay:-5s}.masonry-tile:nth-child(3) img,.masonry-tile:nth-child(6) img{animation-delay:-9s}
+    .masonry-natural { position:relative; display:block; }
+    .masonry-natural .masonry-tile { position:absolute; }
+    .masonry-natural .masonry-tile:nth-child(1){left:6px;top:6px;width:45%;height:32%}.masonry-natural .masonry-tile:nth-child(2){right:6px;top:6px;width:45%;height:32%}.masonry-natural .masonry-tile:nth-child(3){left:6px;bottom:6px;width:29%;height:61%}.masonry-natural .masonry-tile:nth-child(4){left:35.5%;bottom:6px;width:29%;height:61%}.masonry-natural .masonry-tile:nth-child(5){right:6px;bottom:6px;width:29%;height:61%}
+    .masonry-natural .masonry-tile img { width:100%;height:100%;object-fit:cover; }
     .vertical-live { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
     .vertical-live img { min-width:0; min-height:0; border-radius:5px; object-fit:cover; }
     .vertical-live img:nth-child(1){object-position:47% 50%}.vertical-live img:nth-child(2){object-position:57% 50%}.vertical-live img:nth-child(3){object-position:48% 38%}.vertical-live img:nth-child(4){object-position:62% 50%}
@@ -397,7 +401,7 @@
 <body>
   <header class="topbar glass">
     <div class="brand"><img src="assets/dearscene-icon.png" alt=""><span>DearScene</span></div>
-    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.23-beta.1/DearScene-v1.23.exe">v1.23を入手</a>
+    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.3-beta.1/DearScene-v1.3.exe">v1.3を入手</a>
   </header>
 
   <section class="opening" aria-labelledby="opening-title">
@@ -602,13 +606,14 @@
             <div class="feature-copy">
               <span class="feature-number">02 · MULTI LAYOUT</span>
               <h3>一枚ずつも、<br>響き合うギャラリーも。</h3>
-              <p>メイソンリーは、縦写真を縦の枠へ、横写真を横の枠へ。3:4、黄金比、16:9を組み合わせ、3・5・7枚の作品がひとつの画面で美しく響き合います。</p>
+              <p>メイソンリーは、縦作品を縦の枠へ、横作品を横の枠へ。3:4、黄金比、16:9でリズムをつくる「貴金属比」と、写真・動画の形をそのまま活かす「元の比率を維持」から選べます。</p>
               <p>短冊は、縦へ2〜5分割。作品ごとに並べることも、パノラマ写真や横長動画を一作品のまま、均等な隙間を挟んだ三つの窓として連続表示することもできます。</p>
-              <p>次のページは画面の外で先に準備。ゆっくり動き出し、なめらかに進み、余韻を残して止まります。<sup class="note-ref"><a href="#release-note-3" aria-label="注記3">3</a></sup></p>
-              <div class="feature-proof"><span>3・5・7枚のメイソンリー</span><span>縦短冊 2〜5分割</span><span>パノラマを縦3面へ</span></div>
+              <p>複数の動画はGPU支援に適した形式を先に準備。次のページが動き始めるまで現在の景色を保ち、ゆっくり動き出し、余韻を残して止まります。<sup class="note-ref"><a href="#release-note-3" aria-label="注記3">3</a></sup></p>
+              <div class="feature-proof"><span>枠と作品の向きを一致</span><span>元の比率を維持</span><span>GPU支援の複数動画</span></div>
             </div>
-            <div class="feature-visual presentation-layout-demo" aria-label="実写サンプルを使ったメイソンリー、縦短冊、パノラマの縦3分割連続表示の例">
-              <div class="layout-showcase"><div class="layout-screen masonry-live"><div class="masonry-tile"><img src="assets/family-travel.jpg" alt="家族旅行の横写真"></div><div class="masonry-tile"><img src="assets/mountain.jpg" alt="湖と山の横写真"></div><div class="masonry-tile"><img src="assets/baby.jpg" alt="家族の縦写真"></div><div class="masonry-tile"><img src="assets/japan-night.jpg" alt="夜景の縦写真"></div><div class="masonry-tile"><img src="assets/beach.jpg" alt="海辺の写真"></div><div class="masonry-tile"><img src="assets/study-works.jpg" alt="作品アーカイブ"></div></div><small>MASONRY · 3 / 5 / 7</small></div>
+            <div class="feature-visual presentation-layout-demo" aria-label="貴金属比と元の比率を維持するメイソンリー、縦短冊、パノラマの縦3分割連続表示の例">
+              <div class="layout-showcase"><div class="layout-screen masonry-live"><div class="masonry-tile"><img src="assets/family-travel.jpg" alt="家族旅行の横写真"></div><div class="masonry-tile"><img src="assets/mountain.jpg" alt="湖と山の横写真"></div><div class="masonry-tile"><img src="assets/baby.jpg" alt="家族の縦写真"></div><div class="masonry-tile"><img src="assets/japan-night.jpg" alt="夜景の縦写真"></div><div class="masonry-tile"><img src="assets/beach.jpg" alt="海辺の写真"></div><div class="masonry-tile"><img src="assets/study-works.jpg" alt="作品アーカイブ"></div></div><small>MASONRY · METALLIC RATIOS</small></div>
+              <div class="layout-showcase"><div class="layout-screen masonry-natural"><div class="masonry-tile"><img src="assets/family-travel.jpg" alt="元の横長比率を保つ旅行写真"></div><div class="masonry-tile"><img src="assets/mountain.jpg" alt="元の横長比率を保つ風景写真"></div><div class="masonry-tile"><img src="assets/baby.jpg" alt="元の縦長比率を保つ家族写真"></div><div class="masonry-tile"><img src="assets/japan-night.jpg" alt="元の縦長比率を保つ夜景写真"></div><div class="masonry-tile"><img src="assets/studio.jpg" alt="元の縦長比率を保つスタジオ写真"></div></div><small>MASONRY · ORIGINAL ASPECT</small></div>
               <div class="layout-showcase"><div class="layout-screen vertical-live"><img src="assets/family-travel.jpg" alt="旅行写真の縦短冊"><img src="assets/japan-night.jpg" alt="夜景写真の縦短冊"><img src="assets/baby.jpg" alt="家族写真の縦短冊"><img src="assets/studio.jpg" alt="スタジオ写真の縦短冊"></div><small>VERTICAL STRIPS · 2–5</small></div>
               <div class="layout-showcase"><div class="layout-screen panorama-live"><div class="panorama-slice"></div><div class="panorama-slice"></div><div class="panorama-slice"></div><span class="panorama-badge">ONE PHOTO</span></div><small>PANORAMA · 3 VERTICAL STRIPS</small></div>
             </div>
@@ -756,13 +761,13 @@
 
     <section class="beta-release" id="beta" aria-labelledby="beta-title">
       <div class="beta-release-inner" data-reveal>
-        <span class="beta-release-kicker">DEARSCENE v1.23 BETA</span>
+        <span class="beta-release-kicker">DEARSCENE v1.3 BETA</span>
         <h2 id="beta-title"><span class="sentence-block">あなたのアーカイブを、</span><span class="sentence-block">もう一度、生きた景色へ。</span></h2>
-        <p><span class="sentence-block">Windows 10／11 x64向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
+        <p><span class="sentence-block">Windows 10／11 x64向けのプレリリースです。</span><span class="sentence-block">v1.3では、作品の向きと比率を活かす二つのメイソンリーと、GPU支援の複数動画再生を追加しました。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
         <div class="beta-actions">
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.23-beta.1/DearScene-v1.23.exe">DearScene v1.23をダウンロード</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.3-beta.1/DearScene-v1.3.exe">DearScene v1.3をダウンロード</a>
           <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener noreferrer">意見・不具合を送る</a>
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.23-beta.1">リリース情報を見る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.3-beta.1">リリース情報を見る</a>
         </div>
         <small>ベータ版のため、重要な写真・動画は元の場所に保持したままご利用ください。DearSceneは元ファイルを移動・編集しません。</small>
       </div>
@@ -775,10 +780,10 @@
     <ol>
       <li id="release-note-1">対応形式は、Windowsの標準デコーダー、同梱FFmpeg、RAW内蔵プレビューを組み合わせたものです。ファイルの生成方法や内部形式によっては再生できない場合があります。</li>
       <li id="release-note-2">アプリ内に固定の登録件数上限はありません。実際に扱える件数、検索時間、先読み速度は、PCの性能、メモリ容量、保存先の速度、同時起動数によって変わります。</li>
-      <li id="release-note-3">メイソンリーと短冊表示は、1枚表示より高い読み出し・デコード負荷がかかります。動画のみの分割表示では、必要な全枠が再生を始めてから切り替えます。準備中は現在のページを保ち、黒画面や静止画への置き換えを避けます。</li>
+      <li id="release-note-3">メイソンリーと短冊表示は、1枚表示より高い読み出し・デコード負荷がかかります。v1.3は複数表示用動画をH.264・NV12へ準備し、対応環境ではGPUによる変換・再生支援を利用します。GPU、ドライバー、素材形式によってCPU負荷は変わります。</li>
       <li id="release-note-4">スマート構図は、画像内の顔らしさ、ピント、特徴色から端末内で注目位置を推定します。作品の内容や画質によって結果は異なり、人物を識別・特定する機能ではありません。</li>
       <li id="release-note-5">停止監視と迂回再生は、すべてのPC、グラフィックドライバー、外部ストレージ構成で無停止動作を保証するものではありません。再生中に追加されたファイルは、書き込みの安定を確認してから候補へ加わります。</li>
-      <li>DearScene v1.23はWindows 10／11 x64向けベータ版です。本体はネットワーク通信を行わず、元の写真・動画を変更しません。掲載している画面、仕様、対応形式は今後の更新で変更される場合があります。</li>
+      <li>DearScene v1.3はWindows 10／11 x64向けベータ版です。本体はネットワーク通信を行わず、元の写真・動画を変更しません。掲載している画面、仕様、対応形式は今後の更新で変更される場合があります。</li>
       <li>配布用EXEは現在コード署名されていません。GitHub Releasesから入手し、同じリリースのMANIFESTに記載したSHA-256と一致することを確認してから実行してください。</li>
     </ol>
   </aside>
