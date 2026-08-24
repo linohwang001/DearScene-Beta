@@ -54,6 +54,22 @@
     @keyframes hero-breathe { from{transform:scale(1.002)} to{transform:scale(1.045)} }
     .device-flow { position:relative; z-index:2; width:min(1260px,96vw); display:grid; grid-template-columns:.72fr minmax(70px,.16fr) 1.12fr; align-items:center; gap:clamp(18px,3vw,48px); }
 
+    .persona-priorities { padding:clamp(76px,10vw,150px) 3vw; background:linear-gradient(180deg,#090b0d,#07090b); }
+    .persona-inner { width:min(1260px,100%); margin:auto; }
+    .persona-head { display:grid; grid-template-columns:1.08fr .92fr; align-items:end; gap:clamp(28px,6vw,86px); margin-bottom:clamp(40px,6vw,76px); }
+    .persona-kicker { display:block; margin-bottom:16px; color:rgba(255,255,255,.38); font-size:10px; letter-spacing:.22em; }
+    .persona-head h2 { margin:0; padding-bottom:.05em; font-size:clamp(36px,5.5vw,76px); font-weight:550; line-height:1.08; letter-spacing:-.06em; }
+    .persona-head p { margin:0; color:rgba(255,255,255,.54); font-size:clamp(14px,1.35vw,18px); line-height:1.8; }
+    .persona-grid { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15); }
+    .persona-card { min-width:0; padding:clamp(25px,3vw,38px) clamp(18px,2.5vw,32px); border-right:1px solid rgba(255,255,255,.1); color:inherit; text-decoration:none; transition:background .4s cubic-bezier(.2,.7,.2,1); }
+    .persona-card:first-child { padding-left:0; }.persona-card:last-child { padding-right:0; border-right:0; }
+    .persona-card:hover,.persona-card:focus-visible { background:rgba(255,255,255,.035); outline:none; }
+    .persona-card > b { display:block; margin-bottom:22px; color:rgba(198,220,228,.48); font-size:10px; font-weight:560; letter-spacing:.16em; }
+    .persona-card h3 { margin:0 0 12px; font-size:clamp(20px,2vw,29px); font-weight:540; line-height:1.2; letter-spacing:-.04em; }
+    .persona-card p { margin:0 0 22px; min-height:66px; color:rgba(255,255,255,.48); font-size:12px; line-height:1.7; }
+    .persona-points { display:flex; flex-wrap:wrap; gap:6px; }
+    .persona-points span { padding:7px 8px; border:1px solid rgba(255,255,255,.12); border-radius:8px; color:rgba(255,255,255,.45); font-size:8px; letter-spacing:.04em; }
+
     .laptop-wrap { align-self:end; filter:drop-shadow(0 34px 42px rgba(0,0,0,.52)); }
     .laptop { width:100%; aspect-ratio:16/11; padding:13px 13px 18px; border-radius:20px 20px 9px 9px; position:relative; background:linear-gradient(145deg,#40464c,#101316 66%); box-shadow:inset 0 1px rgba(255,255,255,.38); }
     .laptop::before { content:""; position:absolute; left:50%; top:6px; width:5px; height:5px; border-radius:50%; background:#050607; transform:translateX(-50%); box-shadow:0 0 0 1px rgba(255,255,255,.08); }
@@ -274,12 +290,15 @@
     .blur-stage::after { content:""; position:absolute; inset:0; background:rgba(7,9,10,.08); }.blur-stage > img{z-index:2;object-fit:contain}
     .ratio-tracking{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:15px;background:linear-gradient(145deg,#171b1e,#0d0f11)}.adaptive-window{position:absolute;overflow:hidden;border:1px solid rgba(255,255,255,.34);border-radius:9px;background:#090b0c;box-shadow:0 14px 30px rgba(0,0,0,.35)}.adaptive-window img{position:absolute;inset:0;object-fit:cover}.adaptive-window::after{content:"";position:absolute;width:20px;height:20px;border:1px solid rgba(255,255,255,.8);border-radius:50%;box-shadow:0 0 0 7px rgba(255,255,255,.07)}.adaptive-window.wide{left:5%;top:7%;width:62%;height:35%}.adaptive-window.wide img{object-position:49% 39%}.adaptive-window.wide::after{left:48%;top:32%}.adaptive-window.square{left:8%;bottom:7%;width:34%;aspect-ratio:1}.adaptive-window.square img{object-position:45% 42%}.adaptive-window.square::after{left:44%;top:34%}.adaptive-window.tall{right:7%;bottom:7%;width:27%;height:78%}.adaptive-window.tall img{object-position:46% 38%}.adaptive-window.tall::after{left:43%;top:29%}.tracking-line{position:absolute;left:39%;top:56%;width:28%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.62));transform:rotate(-24deg)}
 
-    .focus-demo { position:relative; aspect-ratio:16/10; background:#111; }.focus-demo > img{position:absolute;inset:0;object-fit:cover;object-position:46% 38%;filter:brightness(.82)}
-    .focus-path { position:absolute; left:12%; top:66%; width:47%; height:1px; background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(255,255,255,.78)); transform:rotate(-19deg); transform-origin:left; }.focus-path::after{content:"";position:absolute;right:-5px;top:-5px;width:10px;height:10px;border:1px solid white;border-radius:50%;box-shadow:0 0 0 9px rgba(255,255,255,.08),0 0 26px rgba(255,255,255,.28)}
-    .focus-rank { position:absolute; right:20px; bottom:20px; width:min(260px,42%); padding:16px; border-radius:16px; }.focus-rank span{display:flex;align-items:center;gap:9px;padding:6px 0;color:rgba(255,255,255,.54);font-size:10px}.focus-rank span:first-child{color:white}.focus-rank i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.1);font-style:normal;font-size:8px}
-    .motion-track { position:absolute; left:8%; right:8%; bottom:8%; height:4px; border-radius:6px; background:rgba(255,255,255,.13); }.motion-track::before{content:"";position:absolute;left:0;top:0;width:86%;height:100%;border-radius:inherit;background:rgba(255,255,255,.62)}.motion-track::after{content:"1 SEC";position:absolute;right:0;top:-18px;color:rgba(255,255,255,.62);font-size:8px;letter-spacing:.12em}
+    .focus-demo { position:relative; aspect-ratio:3/2; background:#111; isolation:isolate; }.focus-demo > img{position:absolute;inset:0;object-fit:cover;object-position:center;filter:brightness(.78)}
+    .focus-overlay { position:absolute; z-index:2; inset:0; width:100%; height:100%; pointer-events:none; }
+    .focus-overlay circle { fill:rgba(255,255,255,.035); stroke:rgba(255,255,255,.95); stroke-width:3; vector-effect:non-scaling-stroke; filter:drop-shadow(0 3px 12px rgba(0,0,0,.58)); }
+    .focus-overlay path { fill:none; stroke:rgba(255,255,255,.78); stroke-width:1.5; vector-effect:non-scaling-stroke; }
+    .focus-callout { position:absolute; z-index:3; min-height:32px; padding:8px 10px; display:flex; align-items:center; gap:7px; border:1px solid rgba(255,255,255,.24); border-radius:10px; color:rgba(255,255,255,.92); background:rgba(8,11,13,.68); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); font-size:clamp(8px,.85vw,11px); line-height:1.25; box-shadow:0 10px 28px rgba(0,0,0,.26); }
+    .focus-callout i { display:grid; place-items:center; flex:0 0 auto; width:19px; height:19px; border-radius:50%; background:rgba(255,255,255,.14); font-style:normal; font-size:8px; }
+    .focus-callout.human { left:2.5%; top:31%; }.focus-callout.animal { right:2.5%; top:54%; }.focus-callout.detail { left:26%; bottom:2.5%; }.focus-callout.color { right:2.5%; top:9%; }
 
-    .look-demo { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:10px; }.look-card{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px}.look-card img{position:absolute;inset:0}.look-card span{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;color:white;background:rgba(8,10,12,.55);font-size:8px;letter-spacing:.08em;backdrop-filter:blur(10px)}.look-portra img{filter:sepia(.22) saturate(.72) contrast(.92) brightness(1.07)}.look-cine img{filter:hue-rotate(168deg) saturate(1.08) contrast(1.04) brightness(.92)}.look-hp5 img{filter:grayscale(1) contrast(1.14)}
+    .look-demo { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:10px; }.look-card{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px}.look-card img{position:absolute;inset:0}.look-card span{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;color:white;background:rgba(8,10,12,.55);font-size:8px;letter-spacing:.08em;backdrop-filter:blur(10px)}.look-clarendon img{filter:saturate(1.28) contrast(1.18) brightness(1.03)}.look-juno img{filter:sepia(.13) saturate(1.22) contrast(1.1) brightness(1.03)}.look-valencia img{filter:sepia(.22) saturate(.96) contrast(.92) brightness(1.08)}
 
     .timing-demo { padding:clamp(22px,3vw,38px); }.timing-line{position:relative;height:90px;margin:18px 0 30px}.timing-line::before{content:"";position:absolute;left:0;right:0;top:42px;height:2px;background:rgba(255,255,255,.12)}.timing-progress{position:absolute;left:0;top:42px;width:93%;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.25),rgba(255,255,255,.78))}.timing-node{position:absolute;top:33px;width:20px;height:20px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:#111518}.timing-node:nth-child(2){left:0}.timing-node:nth-child(3){left:46%}.timing-node:nth-child(4){right:5%}.timing-node:nth-child(5){right:0;background:white}.timing-caption{position:absolute;top:63px;color:rgba(255,255,255,.4);font-size:9px}.timing-caption.start{left:0}.timing-caption.subject{left:42%}.timing-caption.hold{right:0;text-align:right}.transition-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.transition-card{position:relative;aspect-ratio:1.35;overflow:hidden;border-radius:12px;background:#1b2023}.transition-card img{position:absolute;inset:0}.transition-card img:last-of-type{clip-path:polygon(55% 0,100% 0,100% 100%,36% 100%);opacity:.72}.transition-card small{position:absolute;left:8px;bottom:7px;color:rgba(255,255,255,.7);font-size:7px;letter-spacing:.06em}
 
@@ -302,9 +321,9 @@
     .vertical-live { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
     .vertical-live img { min-width:0; min-height:0; border-radius:5px; object-fit:cover; }
     .vertical-live img:nth-child(1){object-position:47% 50%}.vertical-live img:nth-child(2){object-position:57% 50%}.vertical-live img:nth-child(3){object-position:48% 38%}.vertical-live img:nth-child(4){object-position:62% 50%}
-    .panorama-live { display:grid; grid-template-rows:repeat(4,1fr); gap:5px; }
-    .panorama-slice { min-height:0; border-radius:4px; background-image:url("assets/mountain.jpg"); background-repeat:no-repeat; background-size:100% 400%; }
-    .panorama-slice:nth-child(1){background-position:50% 0}.panorama-slice:nth-child(2){background-position:50% 33.333%}.panorama-slice:nth-child(3){background-position:50% 66.667%}.panorama-slice:nth-child(4){background-position:50% 100%}
+    .panorama-live { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; padding:6px 8%; }
+    .panorama-slice { min-width:0; border-radius:4px; background-image:url("assets/mountain.jpg"); background-repeat:no-repeat; background-size:300% 100%; }
+    .panorama-slice:nth-child(1){background-position:0 50%}.panorama-slice:nth-child(2){background-position:50% 50%}.panorama-slice:nth-child(3){background-position:100% 50%}
     .panorama-badge { position:absolute; right:10px; bottom:10px; padding:6px 8px; border-radius:8px; color:rgba(255,255,255,.78); background:rgba(5,7,8,.58); backdrop-filter:blur(10px); font-size:7px; letter-spacing:.08em; }
     @keyframes layout-photo-breathe { from{transform:scale(1.02)} to{transform:scale(1.075)} }
 
@@ -345,7 +364,7 @@
       .local-promise-card{grid-template-columns:1fr;min-height:auto}.local-visual{min-height:360px}
       .use-scene{min-height:520px}.living-display{width:75%;right:4%;top:18%}.studio-display{width:50%;height:69%;top:15%}.showroom-display{width:78%;left:5%;top:24%}
       .window-uses{grid-template-columns:1fr}.window-use{min-height:520px}
-      .guide-intro{grid-template-columns:1fr;align-items:start}.audience-grid{grid-template-columns:1fr 1fr}.audience-item:nth-child(2){border-right:0}.audience-item:nth-child(3){padding-left:0}.feature-story,.feature-story.reverse{grid-template-columns:1fr}.feature-story.reverse .feature-copy{order:1}.feature-story.reverse .feature-visual{order:2}.presentation-layout-demo{grid-template-columns:1.15fr .76fr 1fr}.quick-start-head{grid-template-columns:1fr}
+      .persona-head{grid-template-columns:1fr}.persona-grid{grid-template-columns:1fr 1fr}.persona-card:nth-child(2){border-right:0}.persona-card:nth-child(3){padding-left:0;border-top:1px solid rgba(255,255,255,.1)}.persona-card:nth-child(4){border-top:1px solid rgba(255,255,255,.1)}.guide-intro{grid-template-columns:1fr;align-items:start}.audience-grid{grid-template-columns:1fr 1fr}.audience-item:nth-child(2){border-right:0}.audience-item:nth-child(3){padding-left:0}.feature-story,.feature-story.reverse{grid-template-columns:1fr}.feature-story.reverse .feature-copy{order:1}.feature-story.reverse .feature-visual{order:2}.presentation-layout-demo{grid-template-columns:1.15fr .76fr 1fr}.quick-start-head{grid-template-columns:1fr}
       .principles{grid-template-columns:1fr}.principle,.principle + .principle{padding:27px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.11)}.principle:last-child{border-bottom:0}
     }
     @media (max-width:560px){
@@ -359,8 +378,8 @@
       .extension-register{margin-top:22px;padding-top:18px}.extension-row{grid-template-columns:1fr;gap:5px;padding:9px 0}.extension-row span{font-size:9.5px;line-height:1.75;letter-spacing:.02em}
       .use-scenes{padding:0 10px 58px;gap:14px}.use-scene{aspect-ratio:4/5;min-height:0;border-radius:20px}.scene-photo{object-fit:cover}.scene-tag{left:14px;top:14px;height:32px;padding:0 11px;border-radius:11px;font-size:9px}.scene-tag i{width:6px;height:6px}.scene-copy{left:17px;right:17px;bottom:20px;width:auto}.scene-copy h2{margin-bottom:9px;font-size:clamp(27px,8vw,38px)}.scene-copy p{font-size:12px;line-height:1.6}
       .window-uses{padding:0 10px 58px;gap:14px}.window-use{aspect-ratio:16/9;min-height:0;border-radius:20px}.window-label{top:10px;left:10px;height:32px;min-width:54px;padding:0 10px;border-radius:11px;font-size:8px}.quiet-brand{min-height:42svh}.quiet-brand img{width:88px}.quiet-brand b{margin-top:18px;font-size:38px}.credits{padding:22px 16px;justify-content:flex-start;font-size:9px}.release-disclosures{padding:48px 22px 18px}.release-disclosures li{font-size:10px;line-height:1.72}
-      .product-guide{padding:72px 10px}.guide-intro{gap:22px;margin-bottom:36px}.guide-title{font-size:clamp(24px,7vw,36px);line-height:1.12}.guide-intro p{font-size:13px;line-height:1.72}.audience-grid{grid-template-columns:1fr;margin-bottom:34px}.audience-item,.audience-item:first-child,.audience-item:nth-child(3),.audience-item:last-child{padding:17px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.audience-item:last-child{border-bottom:0}.audience-item b{margin-bottom:4px}.feature-index{top:70px;margin-bottom:58px;padding:7px;border-radius:15px}.feature-index a{min-height:40px;padding:0 12px}.feature-stack{gap:82px}.feature-story{scroll-margin-top:132px;gap:26px}.feature-copy h3{font-size:clamp(26px,7.3vw,36px)}.feature-copy>p{font-size:13px;line-height:1.75}.feature-proof{margin-top:18px}.feature-visual{border-radius:21px}
-      .ratio-demo{grid-template-columns:1fr;gap:12px;padding:8px}.ratio-stage,.ratio-tracking{border-radius:11px}.ratio-card small{padding:9px 1px 2px;font-size:7px;letter-spacing:.04em}.presentation-layout-demo{grid-template-columns:1fr;padding:7px;gap:12px}.layout-screen{aspect-ratio:16/9;border-radius:11px}.layout-showcase small{min-height:0;padding:8px 2px 0}.focus-demo{aspect-ratio:4/5}.focus-rank{right:12px;bottom:42px;width:calc(100% - 24px);padding:12px}.focus-rank span{padding:4px 0}.motion-track{bottom:5%}.look-demo{gap:6px;padding:7px}.look-card{border-radius:10px}.timing-demo{padding:18px 14px}.timing-line{margin-top:4px}.transition-row{grid-template-columns:1fr 1fr;gap:6px}.rediscovery-demo{padding:14px}.mode-row{grid-template-columns:1fr;gap:7px}.mode-card{min-height:auto;padding:14px}.mode-icon{height:28px;margin-bottom:10px}.memory-actions{flex-wrap:wrap}.media-demo{grid-template-columns:1fr;padding:7px;gap:7px}.media-pane{min-height:250px}.reliability-demo{padding:18px}.pipeline{grid-template-columns:1fr}.pipe-box{min-height:auto}.pipe-arrow{width:1px;height:24px;margin:auto}.pipe-arrow::after{right:-3px;top:auto;bottom:0;transform:rotate(135deg)}.reliability-foot{grid-template-columns:1fr}.ui-demo{grid-template-columns:1fr;padding:7px}.ui-side{grid-template-columns:1fr 1fr}.quick-start{margin-top:88px;padding:28px 14px;border-radius:22px}.quick-start-head{gap:18px;margin-bottom:26px}.quick-start h3{font-size:clamp(27px,8vw,36px)}.quick-start-head p{font-size:12px}.start-grid{grid-template-columns:1fr;gap:7px}.start-step{min-height:auto;padding:17px}.start-step i{margin-bottom:18px}.picker-shot{border-radius:13px}.public-picker{aspect-ratio:4/5;font-size:8px}.public-tool{width:10%}.public-address{border-radius:6px}.public-picker-body{grid-template-columns:1fr}.public-tree,.public-selected{display:none}.public-media{grid-template-columns:repeat(2,1fr)}.public-media-card{border-radius:6px}.public-picker-actions{grid-template-columns:1fr 1fr;font-size:8px}.public-action.apply{grid-column:2}
+      .persona-priorities{padding:72px 10px}.persona-head{gap:22px;margin-bottom:34px}.persona-head h2{font-size:clamp(31px,9vw,42px)}.persona-head p{font-size:13px;line-height:1.72}.persona-grid{grid-template-columns:1fr}.persona-card,.persona-card:first-child,.persona-card:nth-child(3),.persona-card:last-child{padding:22px 4px;border-right:0;border-top:0;border-bottom:1px solid rgba(255,255,255,.1)}.persona-card:last-child{border-bottom:0}.persona-card> b{margin-bottom:12px}.persona-card p{min-height:0;margin-bottom:17px}.product-guide{padding:72px 10px}.guide-intro{gap:22px;margin-bottom:36px}.guide-title{font-size:clamp(24px,7vw,36px);line-height:1.12}.guide-intro p{font-size:13px;line-height:1.72}.audience-grid{grid-template-columns:1fr;margin-bottom:34px}.audience-item,.audience-item:first-child,.audience-item:nth-child(3),.audience-item:last-child{padding:17px 0;border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.audience-item:last-child{border-bottom:0}.audience-item b{margin-bottom:4px}.feature-index{top:70px;margin-bottom:58px;padding:7px;border-radius:15px}.feature-index a{min-height:40px;padding:0 12px}.feature-stack{gap:82px}.feature-story{scroll-margin-top:132px;gap:26px}.feature-copy h3{font-size:clamp(26px,7.3vw,36px)}.feature-copy>p{font-size:13px;line-height:1.75}.feature-proof{margin-top:18px}.feature-visual{border-radius:21px}
+      .ratio-demo{grid-template-columns:1fr;gap:12px;padding:8px}.ratio-stage,.ratio-tracking{border-radius:11px}.ratio-card small{padding:9px 1px 2px;font-size:7px;letter-spacing:.04em}.presentation-layout-demo{grid-template-columns:1fr;padding:7px;gap:12px}.layout-screen{aspect-ratio:16/9;border-radius:11px}.layout-showcase small{min-height:0;padding:8px 2px 0}.focus-demo{aspect-ratio:3/2}.focus-callout{min-height:24px;padding:5px 6px;gap:4px;border-radius:7px;font-size:7px}.focus-callout i{width:15px;height:15px;font-size:6px}.focus-callout.human{left:2%;top:31%}.focus-callout.animal{right:2%;top:53%}.focus-callout.detail{left:25%;bottom:2%}.focus-callout.color{right:2%;top:7%}.look-demo{gap:6px;padding:7px}.look-card{border-radius:10px}.timing-demo{padding:18px 14px}.timing-line{margin-top:4px}.transition-row{grid-template-columns:1fr 1fr;gap:6px}.rediscovery-demo{padding:14px}.mode-row{grid-template-columns:1fr;gap:7px}.mode-card{min-height:auto;padding:14px}.mode-icon{height:28px;margin-bottom:10px}.memory-actions{flex-wrap:wrap}.media-demo{grid-template-columns:1fr;padding:7px;gap:7px}.media-pane{min-height:250px}.reliability-demo{padding:18px}.pipeline{grid-template-columns:1fr}.pipe-box{min-height:auto}.pipe-arrow{width:1px;height:24px;margin:auto}.pipe-arrow::after{right:-3px;top:auto;bottom:0;transform:rotate(135deg)}.reliability-foot{grid-template-columns:1fr}.ui-demo{grid-template-columns:1fr;padding:7px}.ui-side{grid-template-columns:1fr 1fr}.quick-start{margin-top:88px;padding:28px 14px;border-radius:22px}.quick-start-head{gap:18px;margin-bottom:26px}.quick-start h3{font-size:clamp(27px,8vw,36px)}.quick-start-head p{font-size:12px}.start-grid{grid-template-columns:1fr;gap:7px}.start-step{min-height:auto;padding:17px}.start-step i{margin-bottom:18px}.picker-shot{border-radius:13px}.public-picker{aspect-ratio:4/5;font-size:8px}.public-tool{width:10%}.public-address{border-radius:6px}.public-picker-body{grid-template-columns:1fr}.public-tree,.public-selected{display:none}.public-media{grid-template-columns:repeat(2,1fr)}.public-media-card{border-radius:6px}.public-picker-actions{grid-template-columns:1fr 1fr;font-size:8px}.public-action.apply{grid-column:2}
     }
     @media (max-width:360px){
       .scene-index{display:none}.capability-shell{padding-inline:17px}.file-card{width:44px}.files-line{gap:6px}.capability-title{font-size:22px}.product-guide{padding-inline:8px}.guide-title{font-size:24px}.ratio-card small{font-size:6.5px}.feature-copy h3{font-size:26px}.ui-side{grid-template-columns:1fr}
@@ -374,7 +393,7 @@
 <body>
   <header class="topbar glass">
     <div class="brand"><img src="assets/dearscene-icon.png" alt=""><span>DearScene</span></div>
-    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.2/DearScene-v1.22.exe">v1.22を入手</a>
+    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.3/DearScene-v1.22.exe">v1.22を入手</a>
   </header>
 
   <section class="opening" aria-labelledby="opening-title">
@@ -394,6 +413,21 @@
   </section>
 
   <main>
+    <section class="persona-priorities" aria-labelledby="persona-title">
+      <div class="persona-inner" data-reveal>
+        <header class="persona-head">
+          <div><span class="persona-kicker">CHOOSE WHAT MATTERS TO YOU</span><h2 id="persona-title"><span class="sentence-block">守りたいものから、</span><span class="sentence-block">DearSceneを選ぶ。</span></h2></div>
+          <p><span class="sentence-block">家族の記録、作品アーカイブ、事業の実績、空間の演出。</span><span class="sentence-block">使う人によって大切なことは違うから、DearSceneは四つの視点から確かめられます。</span></p>
+        </header>
+        <div class="persona-grid">
+          <a class="persona-card" href="#local"><b>FOR FAMILIES</b><h3>思い出は守ったまま、<br>暮らしの中へ。</h3><p>写真も動画も元ファイルを変更せず、フォルダーを選ぶだけ。家族や旅の記録を安心して再発見できます。</p><div class="persona-points"><span>元ファイル非変更</span><span>かんたん操作</span><span>写真＋動画</span></div></a>
+          <a class="persona-card" href="#focus"><b>FOR CREATORS</b><h3>作品の主役を守り、<br>次の着想へ。</h3><p>顔、ピント、特徴色を見ながら構図を整え、RAWを含む大きな制作史から見逃していた価値を拾います。</p><div class="persona-points"><span>スマート構図</span><span>RAW対応</span><span>20ルック</span></div></a>
+          <a class="persona-card" href="#reliability"><b>FOR BUSINESS</b><h3>止めたくない場所で、<br>静かに伝え続ける。</h3><p>商談、ショールーム、待合空間へ。ローカル再生と先読みが、実績や製品を自然に見せ続けます。</p><div class="persona-points"><span>ローカル再生</span><span>安定再生</span><span>全画面</span></div></a>
+          <a class="persona-card" href="#layouts"><b>FOR SPACES</b><h3>一枚のパノラマを、<br>三つの窓へ。</h3><p>縦短冊、メイソンリー、複数画面。モニターや壁面を、写真と動画が息づく展示へ変えます。</p><div class="persona-points"><span>縦短冊</span><span>複数起動</span><span>プロジェクター</span></div></a>
+        </div>
+      </div>
+    </section>
+
     <section class="water-story" aria-label="DearSceneの体験">
       <header class="water-head" data-reveal><span>THE DEARSCENE EXPERIENCE</span><h2><span class="no-split">偶然の一枚が、</span><br><em class="no-split">記憶をひらく。</em></h2></header>
       <div class="water-stage" data-reveal>
@@ -457,12 +491,12 @@
       </div>
     </section>
 
-    <section class="local-promise" aria-label="ローカルで完結するプライバシー設計">
+    <section class="local-promise" id="local" aria-label="ローカルで完結するプライバシー設計">
       <div class="local-promise-card" data-reveal>
         <div class="local-copy">
           <span class="local-kicker">PRIVATE BY NATURE</span>
           <h2>思い出は、<br>あなたの場所に残る。</h2>
-          <p><span class="sentence-block">DearSceneは、選んだフォルダーをこのPCの中で読み取ります。</span><span class="sentence-block">クラウドへのアップロードも、ライブラリの複製も不要。</span><span class="sentence-block">お気に入りや非表示を選んでも、元の写真と動画には触れません。</span></p>
+          <p><span class="sentence-block">DearSceneは、選んだフォルダーをこのPCの中で読み取ります。</span><span class="sentence-block">クラウドへのアップロードも、ライブラリの複製も不要。</span><span class="sentence-block">お気に入りと非表示は、写真や動画とは別のDearScene専用リストへ、ファイルの場所だけを記録します。</span><span class="sentence-block">画像の中身、ファイル名、保存場所には触れません。</span></p>
           <div class="trust-row"><span>LOCAL PLAYBACK</span><span>NO UPLOAD</span><span>ORIGINALS UNTOUCHED</span></div>
         </div>
         <div class="local-visual" aria-hidden="true">
@@ -533,13 +567,6 @@
           <p><span class="sentence-block">DearSceneは、ローカルの作品アーカイブを整理し直さず、そのまま再生します。</span><span class="sentence-block">顔、ピント、特徴色を見ながら構図を整え、写真と動画を、暮らしや仕事の中心へ戻します。</span></p>
         </header>
 
-        <div class="audience-grid" aria-label="DearSceneが応える4つの利用目的">
-          <div class="audience-item"><b>HOME</b><span>子ども、家族、旅行の記憶をリビングで再発見。</span></div>
-          <div class="audience-item"><b>CREATOR</b><span>完成作とボツ作品から、次の着想を再発見。</span></div>
-          <div class="audience-item"><b>BUSINESS</b><span>実績や製品を、商談と空間の中で静かに紹介。</span></div>
-          <div class="audience-item"><b>SPACE</b><span>店舗、宿泊、待合、イベントの壁面を展示へ。</span></div>
-        </div>
-
         <nav class="feature-index glass" aria-label="DearSceneの機能一覧">
           <a href="#aspect">構図</a>
           <a href="#layouts">分割表示</a>
@@ -572,14 +599,14 @@
               <span class="feature-number">02 · MULTI LAYOUT</span>
               <h3>一枚ずつも、<br>響き合うギャラリーも。</h3>
               <p>メイソンリーは、縦写真を縦の枠へ、横写真を横の枠へ。3:4、黄金比、16:9を組み合わせ、3・5・7枚の作品がひとつの画面で美しく響き合います。</p>
-              <p>短冊は、縦または横へ2〜5分割。作品ごとに並べることも、パノラマ写真や横長動画を一作品のまま、均等な隙間を挟んで連続表示することもできます。</p>
+              <p>短冊は、縦へ2〜5分割。作品ごとに並べることも、パノラマ写真や横長動画を一作品のまま、均等な隙間を挟んだ三つの窓として連続表示することもできます。</p>
               <p>次のページは画面の外で先に準備。ゆっくり動き出し、なめらかに進み、余韻を残して止まります。<sup class="note-ref"><a href="#release-note-3" aria-label="注記3">3</a></sup></p>
-              <div class="feature-proof"><span>3・5・7枚のメイソンリー</span><span>縦・横 2〜5分割</span><span>パノラマ連続表示</span></div>
+              <div class="feature-proof"><span>3・5・7枚のメイソンリー</span><span>縦短冊 2〜5分割</span><span>パノラマを縦3面へ</span></div>
             </div>
-            <div class="feature-visual presentation-layout-demo" aria-label="実写サンプルを使ったメイソンリー、縦短冊、パノラマ連続表示の例">
+            <div class="feature-visual presentation-layout-demo" aria-label="実写サンプルを使ったメイソンリー、縦短冊、パノラマの縦3分割連続表示の例">
               <div class="layout-showcase"><div class="layout-screen masonry-live"><div class="masonry-tile"><img src="assets/family-travel.jpg" alt="家族旅行の横写真"></div><div class="masonry-tile"><img src="assets/mountain.jpg" alt="湖と山の横写真"></div><div class="masonry-tile"><img src="assets/baby.jpg" alt="家族の縦写真"></div><div class="masonry-tile"><img src="assets/japan-night.jpg" alt="夜景の縦写真"></div><div class="masonry-tile"><img src="assets/beach.jpg" alt="海辺の写真"></div><div class="masonry-tile"><img src="assets/study-works.jpg" alt="作品アーカイブ"></div></div><small>MASONRY · 3 / 5 / 7</small></div>
               <div class="layout-showcase"><div class="layout-screen vertical-live"><img src="assets/family-travel.jpg" alt="旅行写真の縦短冊"><img src="assets/japan-night.jpg" alt="夜景写真の縦短冊"><img src="assets/baby.jpg" alt="家族写真の縦短冊"><img src="assets/studio.jpg" alt="スタジオ写真の縦短冊"></div><small>VERTICAL STRIPS · 2–5</small></div>
-              <div class="layout-showcase"><div class="layout-screen panorama-live"><div class="panorama-slice"></div><div class="panorama-slice"></div><div class="panorama-slice"></div><div class="panorama-slice"></div><span class="panorama-badge">ONE PHOTO</span></div><small>CONTINUOUS PANORAMA · ON / OFF</small></div>
+              <div class="layout-showcase"><div class="layout-screen panorama-live"><div class="panorama-slice"></div><div class="panorama-slice"></div><div class="panorama-slice"></div><span class="panorama-badge">ONE PHOTO</span></div><small>PANORAMA · 3 VERTICAL STRIPS</small></div>
             </div>
           </article>
 
@@ -591,11 +618,10 @@
               <p>短冊のような細い画面でも、始まりから終わりまで主役が見える範囲を守ります。写真の動きは、作品を見せるために働きます。<sup class="note-ref"><a href="#release-note-4" aria-label="注記4">4</a></sup></p>
               <div class="feature-proof"><span>顔を最優先</span><span>端末内で構図を判断</span><span>主役を画面内に保つ</span></div>
             </div>
-            <div class="feature-visual focus-demo" aria-label="主題を判定して穏やかに画角を移動する例">
-              <img src="assets/baby.jpg" alt="顔とピント領域を含む家族写真">
-              <div class="focus-path" aria-hidden="true"></div>
-              <div class="focus-rank glass"><span><i>1</i>人物・イラスト・動物の顔</span><span><i>2</i>ピントの合った領域</span><span><i>3</i>特徴的な色の領域</span></div>
-              <div class="motion-track" aria-hidden="true"></div>
+            <div class="feature-visual focus-demo" aria-label="人物の顔と動物の顔を最優先し、次にピント位置、特徴的な色の領域を探す例">
+              <img src="assets/smart-composition-priority.png" alt="人物と柴犬の顔、ピントの合った写真アルバム、背景の青い花瓶が写る写真">
+              <svg class="focus-overlay" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"><circle cx="590" cy="250" r="92"/><path d="M505 292 L270 405"/><circle cx="850" cy="505" r="82"/><path d="M926 532 L1170 610"/><circle cx="730" cy="900" r="74"/><path d="M680 846 L610 760"/><circle cx="1350" cy="315" r="74"/><path d="M1290 360 L1160 430"/></svg>
+              <span class="focus-callout human"><i>1</i>人の顔</span><span class="focus-callout animal"><i>1</i>動物の顔</span><span class="focus-callout detail"><i>2</i>ピント位置</span><span class="focus-callout color"><i>3</i>特徴的な色</span>
             </div>
           </article>
 
@@ -603,14 +629,15 @@
             <div class="feature-copy">
               <span class="feature-number">04 · FILM LOOKS</span>
               <h3>同じ一枚に、<br>まったく新しい温度を。</h3>
-              <p>カラー、白黒、モダンカラー、フィルムルックまで20種類。強さを調整しながら再生中にも切り替えられます。選んだルックだけを1〜999枚ごとにランダムで巡らせれば、見慣れた写真にも新しい気配が生まれます。</p>
+              <p>カラー、白黒、モダンカラー、フィルムルックまで20種類。強さを調整しながら再生中にも切り替えられます。日常写真で親しまれてきたClarendon、Juno、ValenciaをDearSceneらしく整えたルックも選択できます。</p>
+              <p>選んだルックだけを1〜999枚ごとにランダムで巡らせれば、見慣れた写真にも新しい気配が生まれます。</p>
               <div class="feature-proof"><span>20 Presets</span><span>1–999枚ごと</span><span>非破壊</span></div>
             </div>
-            <div class="feature-visual look-demo" aria-label="同じ風景写真に4種類のフィルムルックを適用した例">
+            <div class="feature-visual look-demo" aria-label="同じ風景写真にDearScene実装済みのClarendon、Juno、Valencia系ルックを適用した例">
               <div class="look-card"><img src="assets/mountain.jpg" alt="オリジナルの風景写真"><span>ORIGINAL</span></div>
-              <div class="look-card look-portra"><img src="assets/mountain.jpg" alt="暖かいフィルム調の風景写真"><span>PORTRA-LIKE</span></div>
-              <div class="look-card look-cine"><img src="assets/mountain.jpg" alt="映画調の風景写真"><span>CINE 800T-LIKE</span></div>
-              <div class="look-card look-hp5"><img src="assets/mountain.jpg" alt="白黒フィルム調の風景写真"><span>HP5-LIKE</span></div>
+              <div class="look-card look-clarendon"><img src="assets/mountain.jpg" alt="色とコントラストを自然に強めた風景写真"><span>CLARENDON POP</span></div>
+              <div class="look-card look-juno"><img src="assets/mountain.jpg" alt="暖色を豊かに見せる風景写真"><span>JUNO WARM</span></div>
+              <div class="look-card look-valencia"><img src="assets/mountain.jpg" alt="明るく穏やかな温度の風景写真"><span>VALENCIA SUN</span></div>
             </div>
           </article>
 
@@ -637,6 +664,7 @@
               <span class="feature-number">06 · REDISCOVERY</span>
               <h3>忘れていた一枚が、<br>次の発見になる。</h3>
               <p>ランダムは一巡するまで同じファイルを繰り返しません。順番通り、未鑑賞優先、おすすめも選択可能。気になった一枚はハートボタンまたはLキーでお気に入りへ。見せたくない写真は元ファイルを消さずに隠せます。</p>
+              <p>DearSceneが保存するのは、専用リストに記録したファイルの場所だけ。お気に入りにしても、画像や動画そのもの、ファイル名、フォルダー構造を書き換えません。大切なライブラリは、これまで通りの姿で残ります。</p>
               <div class="feature-proof"><span>No Repeat</span><span>未鑑賞優先</span><span>元ファイル非変更</span></div>
             </div>
             <div class="feature-visual rediscovery-demo" aria-label="3種類の再生モードと鑑賞中の操作">
@@ -652,7 +680,7 @@
           <article class="feature-story reverse" id="media">
             <div class="feature-copy">
               <span class="feature-number">07 · PHOTO + VIDEO</span>
-              <h3>写真か、動画か。<br>もう、分けなくていい。</h3>
+              <h3>写真も、動画も。<br>もう、分けなくていい。</h3>
               <p>静止画と動画をひとつの再生列へ。写真だけ、動画だけ、使いたい形式だけにも絞れます。大量のライブラリでも、撮影機材や年代をまたいで一度に眺められます。</p>
               <p>写真にはスマート構図やフィルムルックを。動画には全編表示やぼかし背景、ミュートを。メディアごとに見せ方を選び、静けさと動きを自然につなげます。</p>
               <div class="feature-proof"><span>画像 28形式</span><span>動画 11形式</span><span>写真・動画を別々に設定</span></div>
@@ -728,9 +756,9 @@
         <h2 id="beta-title"><span class="sentence-block">あなたのアーカイブを、</span><span class="sentence-block">もう一度、生きた景色へ。</span></h2>
         <p><span class="sentence-block">Windows 10／11 x64向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
         <div class="beta-actions">
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.2/DearScene-v1.22.exe">DearScene v1.22をダウンロード</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.3/DearScene-v1.22.exe">DearScene v1.22をダウンロード</a>
           <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener noreferrer">意見・不具合を送る</a>
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.2">リリース情報を見る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.3">リリース情報を見る</a>
         </div>
         <small>ベータ版のため、重要な写真・動画は元の場所に保持したままご利用ください。DearSceneは元ファイルを移動・編集しません。</small>
       </div>
@@ -764,7 +792,7 @@
   </footer>
   <script>
     (() => {
-      const revealTargets = document.querySelectorAll('.capability-shell,.use-scene,.window-use,.guide-intro,.audience-grid,.feature-story,.quick-start,.beta-release,.quiet-brand');
+      const revealTargets = document.querySelectorAll('.persona-priorities,.capability-shell,.use-scene,.window-use,.guide-intro,.feature-story,.quick-start,.beta-release,.quiet-brand');
       revealTargets.forEach((element) => element.setAttribute('data-reveal', ''));
       if (!('IntersectionObserver' in window)) {
         document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('in-view'));

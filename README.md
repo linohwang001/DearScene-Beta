@@ -7,9 +7,9 @@ DearSceneは、フォルダーに眠る写真と動画を選び、整え、静�
 ## DearScene v1.22 Beta
 
 - [紹介ページをブラウザで見る](https://linohwang001.github.io/DearScene-Beta/)
-- [DearScene v1.22をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.2/DearScene-v1.22.exe)
+- [DearScene v1.22をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.3/DearScene-v1.22.exe)
 - [意見・不具合をGoogle Formsで送る](https://forms.gle/5TT5WFhG5xzA45oW9)
-- [v1.22 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.2)
+- [v1.22 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.3)
 
 ## 動作環境
 
