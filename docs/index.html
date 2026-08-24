@@ -38,7 +38,7 @@
     .opening-inner { width:min(1120px,100%); position:relative; z-index:2; }
     .opening-mark { width:76px; height:76px; margin:0 auto clamp(32px,5vh,58px); border-radius:24px; box-shadow:0 24px 70px rgba(0,0,0,.56),0 0 55px rgba(127,170,187,.14); }
     .opening-kicker { display:block; margin-bottom:22px; color:rgba(224,235,239,.5); font-size:11px; letter-spacing:.28em; }
-    .opening h1 { margin:0; padding-bottom:.08em; overflow:visible; font-size:clamp(48px,8.4vw,126px); font-weight:570; line-height:1.08; letter-spacing:-.075em; }
+    .opening h1 { margin:0; padding-bottom:.14em; overflow:visible; font-size:clamp(48px,8.4vw,126px); font-weight:570; line-height:1.08; letter-spacing:-.075em; }
     .opening h1 > span { display:block; color:transparent; background:linear-gradient(104deg,#f6f8f9 8%,#afc6cf 46%,#f7f8f8 78%); -webkit-background-clip:text; background-clip:text; }
     .opening-lead { width:min(1080px,94%); margin:clamp(30px,5vh,54px) auto 0; color:rgba(236,241,243,.64); font-size:clamp(15px,1.42vw,20px); line-height:1.75; }
     .sentence-block { display:block; }
@@ -64,7 +64,11 @@
     .persona-card { min-width:0; padding:clamp(25px,3vw,38px) clamp(18px,2.5vw,32px); border-right:1px solid rgba(255,255,255,.1); color:inherit; text-decoration:none; transition:background .4s cubic-bezier(.2,.7,.2,1); }
     .persona-card:first-child { padding-left:0; }.persona-card:last-child { padding-right:0; border-right:0; }
     .persona-card:hover,.persona-card:focus-visible { background:rgba(255,255,255,.035); outline:none; }
-    .persona-card > b { display:block; margin-bottom:22px; color:rgba(198,220,228,.48); font-size:10px; font-weight:560; letter-spacing:.16em; }
+    .persona-visual { position:relative; aspect-ratio:4/3; margin-bottom:25px; overflow:hidden; border-radius:14px; background:#111; box-shadow:inset 0 0 0 1px rgba(255,255,255,.13); }
+    .persona-visual::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,transparent 55%,rgba(3,5,6,.36)); box-shadow:inset 0 0 0 1px rgba(255,255,255,.1); border-radius:inherit; }
+    .persona-visual img { transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .8s; }
+    .persona-card:hover .persona-visual img,.persona-card:focus-visible .persona-visual img { transform:scale(1.035); filter:saturate(1.06); }
+    .persona-card > b { display:block; margin-bottom:15px; color:rgba(198,220,228,.48); font-size:10px; font-weight:560; letter-spacing:.16em; }
     .persona-card h3 { margin:0 0 12px; font-size:clamp(20px,2vw,29px); font-weight:540; line-height:1.2; letter-spacing:-.04em; }
     .persona-card p { margin:0 0 22px; min-height:66px; color:rgba(255,255,255,.48); font-size:12px; line-height:1.7; }
     .persona-points { display:flex; flex-wrap:wrap; gap:6px; }
@@ -220,7 +224,7 @@
     .scene-tag { position:absolute; z-index:10; left:clamp(22px,4.5vw,68px); top:clamp(22px,4.5vw,62px); height:40px; padding:0 15px; display:flex; align-items:center; gap:9px; border-radius:14px; color:rgba(255,255,255,.82); font-size:11px; letter-spacing:.13em; }
     .scene-tag i { width:8px; height:8px; border-radius:50%; background:#d6e1e5; box-shadow:0 0 14px rgba(214,225,229,.6); }
     .scene-copy { position:absolute; z-index:10; left:clamp(22px,4.5vw,68px); bottom:clamp(24px,5vw,72px); width:min(620px,70%); }
-    .scene-copy h2 { margin:0 0 13px; padding-bottom:.04em; color:#fff; font-size:clamp(29px,4.4vw,64px); font-weight:530; line-height:1.1; letter-spacing:-.055em; }
+    .scene-copy h2 { margin:0 0 13px; padding-bottom:.12em; overflow:visible; color:#fff; font-size:clamp(29px,4.4vw,64px); font-weight:530; line-height:1.1; letter-spacing:-.055em; }
     .scene-copy p { margin:0; width:min(540px,100%); color:rgba(255,255,255,.72); font-size:clamp(13px,1.35vw,18px); line-height:1.7; }
 
     .wall-tv { position:absolute; z-index:5; padding:9px; background:linear-gradient(145deg,#393e42,#070809 75%); box-shadow:0 28px 70px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.26); }
@@ -292,13 +296,13 @@
 
     .focus-demo { position:relative; aspect-ratio:3/2; background:#111; isolation:isolate; }.focus-demo > img{position:absolute;inset:0;object-fit:cover;object-position:center;filter:brightness(.78)}
     .focus-overlay { position:absolute; z-index:2; inset:0; width:100%; height:100%; pointer-events:none; }
-    .focus-overlay circle { fill:rgba(255,255,255,.035); stroke:rgba(255,255,255,.95); stroke-width:3; vector-effect:non-scaling-stroke; filter:drop-shadow(0 3px 12px rgba(0,0,0,.58)); }
-    .focus-overlay path { fill:none; stroke:rgba(255,255,255,.78); stroke-width:1.5; vector-effect:non-scaling-stroke; }
+    .focus-overlay circle { fill:rgba(178,230,202,.06); stroke:rgba(198,244,218,.95); stroke-width:1.25; vector-effect:non-scaling-stroke; filter:drop-shadow(0 2px 5px rgba(0,0,0,.72)); }
+    .focus-overlay path { fill:none; stroke:rgba(215,241,226,.72); stroke-width:.8; vector-effect:non-scaling-stroke; }
     .focus-callout { position:absolute; z-index:3; min-height:32px; padding:8px 10px; display:flex; align-items:center; gap:7px; border:1px solid rgba(255,255,255,.24); border-radius:10px; color:rgba(255,255,255,.92); background:rgba(8,11,13,.68); backdrop-filter:blur(15px); -webkit-backdrop-filter:blur(15px); font-size:clamp(8px,.85vw,11px); line-height:1.25; box-shadow:0 10px 28px rgba(0,0,0,.26); }
     .focus-callout i { display:grid; place-items:center; flex:0 0 auto; width:19px; height:19px; border-radius:50%; background:rgba(255,255,255,.14); font-style:normal; font-size:8px; }
     .focus-callout.human { left:2.5%; top:31%; }.focus-callout.animal { right:2.5%; top:54%; }.focus-callout.detail { left:26%; bottom:2.5%; }.focus-callout.color { right:2.5%; top:9%; }
 
-    .look-demo { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:10px; }.look-card{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px}.look-card img{position:absolute;inset:0}.look-card span{position:absolute;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;color:white;background:rgba(8,10,12,.55);font-size:8px;letter-spacing:.08em;backdrop-filter:blur(10px)}.look-clarendon img{filter:saturate(1.28) contrast(1.18) brightness(1.03)}.look-juno img{filter:sepia(.13) saturate(1.22) contrast(1.1) brightness(1.03)}.look-valencia img{filter:sepia(.22) saturate(.96) contrast(.92) brightness(1.08)}
+    .look-demo { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:10px; }.look-card{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:14px}.look-card img{position:absolute;inset:0}.look-card::after{content:"";position:absolute;inset:0;pointer-events:none}.look-card span{position:absolute;z-index:2;left:10px;bottom:9px;padding:6px 8px;border-radius:8px;color:white;background:rgba(8,10,12,.58);font-size:8px;letter-spacing:.08em;backdrop-filter:blur(10px)}.look-clarendon img{filter:saturate(1.58) contrast(1.32) brightness(1.02) hue-rotate(-5deg)}.look-clarendon::after{background:linear-gradient(180deg,rgba(23,54,86,.12),transparent 50%,rgba(10,20,29,.08))}.look-juno img{filter:sepia(.24) saturate(1.6) contrast(1.16) brightness(1.06) hue-rotate(-10deg)}.look-juno::after{background:rgba(180,74,18,.06)}.look-valencia img{filter:sepia(.48) saturate(.78) contrast(.8) brightness(1.14) hue-rotate(-6deg)}.look-valencia::after{background:rgba(255,212,147,.12)}
 
     .timing-demo { padding:clamp(22px,3vw,38px); }.timing-line{position:relative;height:90px;margin:18px 0 30px}.timing-line::before{content:"";position:absolute;left:0;right:0;top:42px;height:2px;background:rgba(255,255,255,.12)}.timing-progress{position:absolute;left:0;top:42px;width:93%;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.25),rgba(255,255,255,.78))}.timing-node{position:absolute;top:33px;width:20px;height:20px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:#111518}.timing-node:nth-child(2){left:0}.timing-node:nth-child(3){left:46%}.timing-node:nth-child(4){right:5%}.timing-node:nth-child(5){right:0;background:white}.timing-caption{position:absolute;top:63px;color:rgba(255,255,255,.4);font-size:9px}.timing-caption.start{left:0}.timing-caption.subject{left:42%}.timing-caption.hold{right:0;text-align:right}.transition-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.transition-card{position:relative;aspect-ratio:1.35;overflow:hidden;border-radius:12px;background:#1b2023}.transition-card img{position:absolute;inset:0}.transition-card img:last-of-type{clip-path:polygon(55% 0,100% 0,100% 100%,36% 100%);opacity:.72}.transition-card small{position:absolute;left:8px;bottom:7px;color:rgba(255,255,255,.7);font-size:7px;letter-spacing:.06em}
 
@@ -348,7 +352,7 @@
     .beta-release { padding:clamp(70px,10vw,150px) max(20px,6vw); background:linear-gradient(180deg,#0c1013,#080a0c); }
     .beta-release-inner { width:min(920px,100%); margin:auto; padding:clamp(28px,6vw,68px); border:1px solid rgba(255,255,255,.12); border-radius:clamp(24px,4vw,42px); background:radial-gradient(circle at 50% 0,rgba(119,164,183,.16),transparent 55%),rgba(255,255,255,.025); text-align:center; }
     .beta-release-kicker { display:block; margin-bottom:18px; color:rgba(255,255,255,.46); font-size:10px; letter-spacing:.18em; }
-    .beta-release h2 { font-size:clamp(34px,6vw,72px); line-height:1.02; letter-spacing:-.055em; }
+    .beta-release h2 { padding-bottom:.1em; overflow:visible; font-size:clamp(34px,6vw,72px); line-height:1.02; letter-spacing:-.055em; }
     .beta-release p { width:min(650px,100%); margin:22px auto 0; color:rgba(255,255,255,.56); font-size:clamp(13px,1.5vw,17px); line-height:1.8; }
     .beta-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:30px; }
     .beta-actions a { min-height:48px; padding:0 21px; display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.18); border-radius:15px; color:white; background:rgba(255,255,255,.06); font-size:12px; font-weight:650; text-decoration:none; transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s; }
@@ -393,7 +397,7 @@
 <body>
   <header class="topbar glass">
     <div class="brand"><img src="assets/dearscene-icon.png" alt=""><span>DearScene</span></div>
-    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.3/DearScene-v1.22.exe">v1.22を入手</a>
+    <a class="top-cta" href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.4/DearScene-v1.22.exe">v1.22を入手</a>
   </header>
 
   <section class="opening" aria-labelledby="opening-title">
@@ -416,14 +420,14 @@
     <section class="persona-priorities" aria-labelledby="persona-title">
       <div class="persona-inner" data-reveal>
         <header class="persona-head">
-          <div><span class="persona-kicker">CHOOSE WHAT MATTERS TO YOU</span><h2 id="persona-title"><span class="sentence-block">守りたいものから、</span><span class="sentence-block">DearSceneを選ぶ。</span></h2></div>
-          <p><span class="sentence-block">家族の記録、作品アーカイブ、事業の実績、空間の演出。</span><span class="sentence-block">使う人によって大切なことは違うから、DearSceneは四つの視点から確かめられます。</span></p>
+          <div><span class="persona-kicker">ONE ARCHIVE. MANY NEW SCENES.</span><h2 id="persona-title"><span class="sentence-block">しまってある記録を、</span><span class="sentence-block">もう一度、景色へ。</span></h2></div>
+          <p><span class="sentence-block">DearSceneは、フォルダーに眠る写真と動画を、整理し直さずにめぐらせるソフトウェアです。</span><span class="sentence-block">家族の時間、次の創作、商談の空気、空間の印象へ。</span><span class="sentence-block">あなたの使い方から、必要な機能を確かめられます。</span></p>
         </header>
         <div class="persona-grid">
-          <a class="persona-card" href="#local"><b>FOR FAMILIES</b><h3>思い出は守ったまま、<br>暮らしの中へ。</h3><p>写真も動画も元ファイルを変更せず、フォルダーを選ぶだけ。家族や旅の記録を安心して再発見できます。</p><div class="persona-points"><span>元ファイル非変更</span><span>かんたん操作</span><span>写真＋動画</span></div></a>
-          <a class="persona-card" href="#focus"><b>FOR CREATORS</b><h3>作品の主役を守り、<br>次の着想へ。</h3><p>顔、ピント、特徴色を見ながら構図を整え、RAWを含む大きな制作史から見逃していた価値を拾います。</p><div class="persona-points"><span>スマート構図</span><span>RAW対応</span><span>20ルック</span></div></a>
-          <a class="persona-card" href="#reliability"><b>FOR BUSINESS</b><h3>止めたくない場所で、<br>静かに伝え続ける。</h3><p>商談、ショールーム、待合空間へ。ローカル再生と先読みが、実績や製品を自然に見せ続けます。</p><div class="persona-points"><span>ローカル再生</span><span>安定再生</span><span>全画面</span></div></a>
-          <a class="persona-card" href="#layouts"><b>FOR SPACES</b><h3>一枚のパノラマを、<br>三つの窓へ。</h3><p>縦短冊、メイソンリー、複数画面。モニターや壁面を、写真と動画が息づく展示へ変えます。</p><div class="persona-points"><span>縦短冊</span><span>複数起動</span><span>プロジェクター</span></div></a>
+          <a class="persona-card" href="#local"><div class="persona-visual"><img src="assets/persona-family.jpg" alt="リビングで家族写真と旅行動画を映す利用イメージ"></div><b>FOR FAMILIES</b><h3>撮った日の記憶を、<br>今日のリビングへ。</h3><p>フォルダーを選ぶだけ。子どもの成長も旅の一枚も、写真と動画を分けずに日常の風景へ戻します。</p><div class="persona-points"><span>元ファイル非変更</span><span>かんたん操作</span><span>写真＋動画</span></div></a>
+          <a class="persona-card" href="#focus"><div class="persona-visual"><img src="assets/persona-creator.jpg" alt="書斎で完成作と未採用作品を見つけ直す利用イメージ"></div><b>FOR CREATORS</b><h3>選ばなかった一枚も、<br>次の着想へ。</h3><p>RAWを含む制作史をスマート構図と多彩なルックで巡回。当時は見逃していた価値を拾い直します。</p><div class="persona-points"><span>スマート構図</span><span>RAW対応</span><span>20ルック</span></div></a>
+          <a class="persona-card" href="#reliability"><div class="persona-visual"><img src="assets/persona-business.jpg" alt="ショールームで製品と実績を静かに紹介する利用イメージ"></div><b>FOR BUSINESS</b><h3>実績が、<br>会話より先に伝わる。</h3><p>商談、ショールーム、待合空間へ。ローカル再生と先読みが、製品や事例を静かに見せ続けます。</p><div class="persona-points"><span>ローカル再生</span><span>安定再生</span><span>全画面</span></div></a>
+          <a class="persona-card" href="#layouts"><div class="persona-visual"><img src="assets/persona-space.jpg" alt="壁面へ三つの縦長パノラマを投影する利用イメージ"></div><b>FOR SPACES</b><h3>一枚の景色が、<br>空間の印象を変える。</h3><p>縦短冊、メイソンリー、複数画面。モニターや壁面を、写真と動画が息づく展示へ変えます。</p><div class="persona-points"><span>縦短冊</span><span>複数起動</span><span>プロジェクター</span></div></a>
         </div>
       </div>
     </section>
@@ -440,7 +444,7 @@
       </div>
       <div class="principles" data-reveal>
         <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 9.5h8l2.2 2.5H28v14H4z"/><path d="M4 12V7h8l2 2.5"/></svg><b>選択は、一度でいい。</b><p><span class="sentence-block">一枚ずつ探す必要はありません。</span><span class="sentence-block">サブフォルダーまで含め、アーカイブのすべてを解き放ちます。</span></p></article>
-        <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4"/></svg><b>主役は、見失わない。</b><p><span class="sentence-block">顔、ピント、特徴色の順に注目点を探す。</span><span class="sentence-block">極端な画面比率でも、作品の中心を守り抜きます。</span></p></article>
+        <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 2v4M16 26v4M2 16h4M26 16h4"/></svg><b>主役は、見失わない。</b><p><span class="sentence-block">顔、ピント、特徴色の順に注目点を探す。</span><span class="sentence-block">極端な画面比率でも、作品の中心を外しません。</span></p></article>
         <article class="principle"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 24V8h22v16z"/><path d="M10 20l4-5 3 3 4-6 5 8"/><circle cx="11" cy="12" r="2"/></svg><b>すべての動きに、品格を。</b><p><span class="sentence-block">ゆっくり始まり、なめらかに進み、余韻を残して止まる。</span><span class="sentence-block">写真を見る時間を、決して邪魔しません。</span></p></article>
       </div>
     </section>
@@ -615,12 +619,12 @@
               <span class="feature-number">03 · SMART COMPOSITION</span>
               <h3>主役を見つける。<br>最後まで、離さない。</h3>
               <p>人物、イラスト、動物の顔を最優先に、ピントの合った場所、特徴的な色へと視線を導きます。背景を大きくぼかした写真でも、小さな主役を探して構図の中心へ。</p>
-              <p>短冊のような細い画面でも、始まりから終わりまで主役が見える範囲を守ります。写真の動きは、作品を見せるために働きます。<sup class="note-ref"><a href="#release-note-4" aria-label="注記4">4</a></sup></p>
+              <p>短冊のような細い画面でも、始まりから終わりまで主役が見える範囲から外れません。写真の動きは、作品を見せるために働きます。<sup class="note-ref"><a href="#release-note-4" aria-label="注記4">4</a></sup></p>
               <div class="feature-proof"><span>顔を最優先</span><span>端末内で構図を判断</span><span>主役を画面内に保つ</span></div>
             </div>
             <div class="feature-visual focus-demo" aria-label="人物の顔と動物の顔を最優先し、次にピント位置、特徴的な色の領域を探す例">
               <img src="assets/smart-composition-priority.png" alt="人物と柴犬の顔、ピントの合った写真アルバム、背景の青い花瓶が写る写真">
-              <svg class="focus-overlay" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"><circle cx="590" cy="250" r="92"/><path d="M505 292 L270 405"/><circle cx="850" cy="505" r="82"/><path d="M926 532 L1170 610"/><circle cx="730" cy="900" r="74"/><path d="M680 846 L610 760"/><circle cx="1350" cy="315" r="74"/><path d="M1290 360 L1160 430"/></svg>
+              <svg class="focus-overlay" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true"><circle cx="562" cy="244" r="18"/><path d="M544 252 L270 405"/><circle cx="802" cy="504" r="18"/><path d="M820 510 L1170 610"/><circle cx="730" cy="900" r="24"/><path d="M710 884 L610 760"/><circle cx="1350" cy="315" r="24"/><path d="M1328 326 L1160 430"/></svg>
               <span class="focus-callout human"><i>1</i>人の顔</span><span class="focus-callout animal"><i>1</i>動物の顔</span><span class="focus-callout detail"><i>2</i>ピント位置</span><span class="focus-callout color"><i>3</i>特徴的な色</span>
             </div>
           </article>
@@ -756,9 +760,9 @@
         <h2 id="beta-title"><span class="sentence-block">あなたのアーカイブを、</span><span class="sentence-block">もう一度、生きた景色へ。</span></h2>
         <p><span class="sentence-block">Windows 10／11 x64向けのプレリリースです。</span><span class="sentence-block">試した感想も、うまくいかなかった瞬間も、次のDearSceneをつくる大切な手がかりになります。</span></p>
         <div class="beta-actions">
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.3/DearScene-v1.22.exe">DearScene v1.22をダウンロード</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/download/v1.22-beta.4/DearScene-v1.22.exe">DearScene v1.22をダウンロード</a>
           <a href="https://forms.gle/5TT5WFhG5xzA45oW9" target="_blank" rel="noopener noreferrer">意見・不具合を送る</a>
-          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.3">リリース情報を見る</a>
+          <a href="https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.22-beta.4">リリース情報を見る</a>
         </div>
         <small>ベータ版のため、重要な写真・動画は元の場所に保持したままご利用ください。DearSceneは元ファイルを移動・編集しません。</small>
       </div>
