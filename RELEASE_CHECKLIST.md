@@ -22,5 +22,6 @@ DearSceneの各リリースは、次の成果物と確認を一つの作業単�
 
 - `.exe`、スタンドアロン紹介ページ、リリースノート、マニフェストを同じGitHub Releaseへ添付する
 - ベータ版はPre-releaseとして公開する
+- ブラウザー連携が利用できない場合は、`tools/PublishGitHubRelease.ps1`でGit Credential Managerの資格情報を一時利用する。トークンは表示・ファイル保存しない
 - 公開後にGitHub Pagesの表示、Releaseの添付ファイル、公開ファイルのSHA-256を再確認する
 - フィードバックフォームと利用条件、セキュリティ説明へのリンクを維持する
