@@ -23,5 +23,7 @@ DearSceneの各リリースは、次の成果物と確認を一つの作業単�
 - `.exe`、スタンドアロン紹介ページ、リリースノート、マニフェストを同じGitHub Releaseへ添付する
 - ベータ版はPre-releaseとして公開する
 - ブラウザー連携が利用できない場合は、`tools/PublishGitHubRelease.ps1`でGit Credential Managerの資格情報を一時利用する。トークンは表示・ファイル保存しない
+- Windows PowerShell 5.1ではリリースノートを明示的にUTF-8で読み、JSONをUTF-8バイト列で送る。公開用`.ps1`はASCIIのみを維持する
+- 公開後にRelease本文をGitHub APIから読み戻し、元のUTF-8文章と完全一致することを必須条件とする
 - 公開後にGitHub Pagesの表示、Releaseの添付ファイル、公開ファイルのSHA-256を再確認する
 - フィードバックフォームと利用条件、セキュリティ説明へのリンクを維持する
