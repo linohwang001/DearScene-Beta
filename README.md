@@ -4,12 +4,12 @@
 
 DearSceneは、フォルダーに眠る写真と動画を選び、整え、静かにめぐらせるWindows向けローカルメディアディスプレイです。
 
-## DearScene v1.3 Beta
+## DearScene v1.4 Beta
 
 - [紹介ページをブラウザで見る](https://linohwang001.github.io/DearScene-Beta/)
-- [DearScene v1.3をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.3-beta.1/DearScene-v1.3.exe)
+- [DearScene v1.4をダウンロード](https://github.com/linohwang001/DearScene-Beta/releases/download/v1.4-beta.1/DearScene-v1.4.exe)
 - [意見・不具合をGoogle Formsで送る](https://forms.gle/5TT5WFhG5xzA45oW9)
-- [v1.3 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.3-beta.1)
+- [v1.4 Betaのリリース情報](https://github.com/linohwang001/DearScene-Beta/releases/tag/v1.4-beta.1)
 
 ## 動作環境
 
@@ -24,20 +24,25 @@ DearSceneは、フォルダーに眠る写真と動画を選び、整え、静�
 
 DearSceneは元の写真・動画を移動・編集しません。ベータ版のため、大切なデータは必ず別途バックアップしてください。
 
-## v1.3の新機能・安定性
+## v1.4の新機能・安定性
 
 - 検証済み内蔵FFmpegだけを利用し、ビルド時・展開時・起動前にSHA-256を照合
 - FFmpegの入力をローカルファイルとアプリ内パイプへ限定
 - DLLをWindows System32からのみ読み込み、RAW内蔵プレビューは128MiBを上限に設定
 - 「メイソンリー：貴金属比」と「メイソンリー：元の比率を維持」を選択可能
+- 赤、オレンジ、黄、緑、水色、青、紫、ピンク、白、黒から、画面に多く含まれる色で写真・動画を絞り込み
+- メイソンリーは左右外周と作品間の隙間を同じ幅に保ち、上下端まで使用
+- 2〜7作品の列数／行数を画面比率から選び、横長、正方形、縦長ウィンドウへ即時追従
 - 最終的な枠の向きに合わせて、縦作品を縦枠、横作品を横枠へ優先配置
 - 複数表示用動画は、対応環境でGPUデコードと選択GPUによるH.264変換を優先
 - 分割表示用の短い互換動画を事前に準備し、長尺動画の全尺変換を待たずに全枠をライブ再生
 - 長尺動画を再生中の映像進行として判定し、写真用の期限やループを停止と誤認しない監視へ改善
 - 次ページの動画が実際に動き始めるまで現在ページをライブ再生し、全画面でも停止や黒画面を見せずに切り替え
-- USB接続ドライブの縦動画3本・横動画2本で、両メイソンリー方式を各6ページ実機確認。全枠5/5が進行し、縦横不一致、黒画面、迂回、再同期はいずれも0件
+- Dドライブの実画像・実動画で色判定失敗0。青画像とオレンジ動画の5分割再生を完走
+- 760×480、900×900、1600×600、760×1000の実ウィンドウで2／3／5／7分割を確認。均等余白、画面外逸脱、黒画面はいずれも0件
+- 実動画5本の5分割全画面を5分・40ページ再生。全枠5/5が進行し、縦横不一致、黒画面、迂回、再同期はいずれも0件
 
-詳細は[リリースノート](RELEASE_NOTES_v1.3.md)、[実機試験報告](TEST_REPORT_v1.3.md)、[セキュリティポリシー](SECURITY.md)、[ベータ利用条件](TERMS.md)を確認してください。
+詳細は[リリースノート](RELEASE_NOTES_v1.4.md)、[実機試験報告](TEST_REPORT_v1.4.md)、[セキュリティポリシー](SECURITY.md)、[ベータ利用条件](TERMS.md)を確認してください。
 
 ## フィードバック
 
@@ -45,10 +50,10 @@ DearSceneは元の写真・動画を移動・編集しません。ベータ版�
 
 ## ファイル検証
 
-配布ファイルのSHA-256は [MANIFEST_v1.3.txt](MANIFEST_v1.3.txt) に記載しています。現在のEXEはコード署名されていないため、GitHub Releases以外から入手したファイルは実行せず、次のコマンドで照合してください。
+配布ファイルのSHA-256は [MANIFEST_v1.4.txt](MANIFEST_v1.4.txt) に記載しています。現在のEXEはコード署名されていないため、GitHub Releases以外から入手したファイルは実行せず、次のコマンドで照合してください。
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.3.exe
+Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.4.exe
 ```
 
 一致しない場合は実行しないでください。組織管理PCのセキュリティ警告は回避せず、管理者へ確認してください。

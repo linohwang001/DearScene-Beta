@@ -1,0 +1,19 @@
+DearScene v1.4 Beta artifact manifest
+Generated: 2026-08-28 JST
+
+DearScene-v1.4.exe
+  Size: 50,060,800 bytes
+  SHA-256: CF7746425AB6BBC34F623A65F56CA8723C20A89028487DB99B788F1631795B3A
+
+DearScene-Scenes-v1.4.html
+  Size: 41,036,033 bytes
+  SHA-256: B0DF3770F5531D5409D4AA80E89943ABE6020C0735D7C8A066697F10796527C1
+
+Embedded FFmpeg compatibility helper (expanded ffmpeg.exe)
+  SHA-256: A9E67ABD4687BD30BFDA8DBF304661271894422D0FA5E69FD72A9B7A9095F29D
+
+Verification (PowerShell):
+  Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-v1.4.exe
+  Get-FileHash -Algorithm SHA256 -LiteralPath .\DearScene-Scenes-v1.4.html
+
+The application is unsigned. Verify that the downloaded hash matches this manifest before running it.
